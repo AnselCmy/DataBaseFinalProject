@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!-- 配置连接数据库的基本信息 -->
+    <!--<property name="connection.username">root</property>-->
+    <!--<property name="connection.password">aa</property>-->
+      <property name="connection.username">root</property>
+      <property name="connection.password">aa</property>
+    <!--mysql驱动-->
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.url">jdbc:mysql://172.18.72.23:3306</property>
+
+    <!-- 配置 Hibernate 的基本信息 -->
+    <property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+    <property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+    <!-- 指定自动生成数据表的策略 -->
+    <property name="hbm2ddl.auto">update</property>
+    <mapping class="com.db.project.entity.StudentEntity"/>
+
+  </session-factory>
+</hibernate-configuration>
