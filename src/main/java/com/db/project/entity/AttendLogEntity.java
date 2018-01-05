@@ -11,6 +11,14 @@ public class AttendLogEntity {
     private Date alDate;
     private String aeNo;
 
+    public AttendLogEntity() {}
+
+    public AttendLogEntity(String eNo, Date alDate, String aeNo) {
+        seteNo(eNo);
+        setAlDate(alDate);
+        setAeNo(aeNo);
+    }
+    
     @Id
     @Column(name = "ENo")
     public String geteNo() {
