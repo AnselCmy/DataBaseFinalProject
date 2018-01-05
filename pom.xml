@@ -136,6 +136,11 @@
       <artifactId>commons-dbcp</artifactId>
       <version>1.2.2</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>RELEASE</version>
+    </dependency>
   </dependencies>
 
   <build>
