@@ -1,20 +1,21 @@
 package com.db.project.dao;
 
-import com.db.project.entity.StudentEntity;
+import com.db.project.entity.DepartmentEntity;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
 import java.util.List;
 
-public class StudentDao {
+public class DepartmentDao{
     /**
-     * 查询Stage表所有数据
+     * 查询Department表所有数据
      * */
-    public List<StudentEntity> query() {
+    public List<DepartmentEntity> query() {
         Session session = null;
-        List<StudentEntity> list = null;
+        Transaction tx = null;
+        List<DepartmentEntity> list = null;
         try {
             //实例化Configuration，这行代码默认加载hibernate.cfg.xml文件
             Configuration conf = new Configuration().configure();
@@ -22,10 +23,12 @@ public class StudentDao {
             SessionFactory sf = conf.buildSessionFactory();
             //实例化Session
             session = sf.openSession();
-            String hql = "from StudentEntity ";
-            Query query = session.createQuery(hql);
-            list = query.list();
+            tx = session.beginTransaction();
+            String hql = "from DepartmentEntity ";
+            list = session.createQuery(hql).list();
+            tx.commit();
         } catch (HibernateException e) {
+            tx.rollback();
             e.printStackTrace();
             return null;
         } finally {
@@ -35,4 +38,5 @@ public class StudentDao {
         }
         return list;
     }
+
 }
