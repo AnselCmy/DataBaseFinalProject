@@ -1,0 +1,59 @@
+package com.db.project.dao;
+
+import com.db.project.entity.UserEntity;
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.classic.Session;
+
+import java.util.List;
+
+public class UserDao {
+    private Session session;
+    private Configuration conf;
+    private SessionFactory sf;
+
+    public UserDao() {
+        //实例化Configuration，这行代码默认加载hibernate.cfg.xml文件
+        conf = new Configuration().configure();
+        //以Configuration创建SessionFactory
+        sf = conf.buildSessionFactory();
+    }
+
+    /*
+    如果有相应的用户，则返回用户的等级
+    否则返回"-1"，表示没有这个用户
+     */
+    public UserEntity CheckUser(String id, String password) {
+        // 实例化Session
+        session = sf.openSession();
+        List<UserEntity> rstList;
+        UserEntity userEntity;
+        // 查询语句
+        String hql = "from UserEntity u where u.eNo = :id and u.uPassword = :password";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        query.setParameter("password", password);
+        // 返回查询结果
+        rstList = query.list();
+        session.close();
+        // 处理查询结果
+        if(rstList.toArray().length == 1) {
+            userEntity = rstList.get(0);
+        }
+        else {
+            userEntity = null;
+        }
+        return userEntity;
+    }
+
+    public String getLevelByENo(String ENo) {
+        List<String> rstList;
+        session = sf.openSession();
+        String hql = "select u.uLevel from UserEntity u where u.eNo = :ENo";
+        Query query = session.createQuery(hql);
+        query.setParameter("ENo", ENo);
+        rstList = query.list();
+        return rstList.get(0);
+    }
+}
