@@ -18,7 +18,7 @@ public class AttendLogEntity {
         setAlDate(alDate);
         setAeNo(aeNo);
     }
-    
+
     @Id
     @Column(name = "ENo")
     public String geteNo() {

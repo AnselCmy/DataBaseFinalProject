@@ -30,6 +30,8 @@
     </bean>
 
     <mvc:resources location="/WEB-INF/lib/" mapping="/lib/**"/>
+    <mvc:resources location="/WEB-INF/assets/" mapping="/assets/**"/>
+
 
     <!-- springmvc文件上传需要配置的节点-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

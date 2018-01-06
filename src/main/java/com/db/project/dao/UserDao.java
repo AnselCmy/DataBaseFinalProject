@@ -21,8 +21,8 @@ public class UserDao {
     }
 
     /*
-    如果有相应的用户，则返回用户的等级
-    否则返回"-1"，表示没有这个用户
+    如果有相应的用户，则返回该用户的UserEntity
+    否则返回null
      */
     public UserEntity CheckUser(String id, String password) {
         // 实例化Session
@@ -47,6 +47,10 @@ public class UserDao {
         return userEntity;
     }
 
+    /*
+    通过用户的工号获取用户的等级
+    返回"1"表示为管理员，"0"为一般用户
+     */
     public String getLevelByENo(String ENo) {
         List<String> rstList;
         session = sf.openSession();

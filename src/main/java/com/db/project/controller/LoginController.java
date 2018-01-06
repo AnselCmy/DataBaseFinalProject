@@ -32,7 +32,7 @@ public class LoginController {
         UserEntity userEntity = userDao.CheckUser(id, password);
         // 如果是合法用户则建立相应的session
         if(userEntity != null) {
-            session.setAttribute("currUserId", userEntity.geteNo());
+            session.setAttribute("currENo", userEntity.geteNo());
             return "redirect:/main";
         }
         // 如果输入不正确或者不合法则重定位到submit

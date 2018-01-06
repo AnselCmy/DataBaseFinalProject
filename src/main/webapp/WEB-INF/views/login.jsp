@@ -1,100 +1,91 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chen
-  Date: 2018/1/4
-  Time: 下午8:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  
 <head>
     <meta charset="utf-8">
     <title>工资管理系统</title>
-    <link rel="stylesheet" href="/lib/bootstrap-3.3.7/css/bootstrap.min.css">
-    <script src="/lib/angular-1.6.8/angular.min.js"></script>
-    <script src="/lib/jquery-3.2.1.min.js"></script>
-    <script src="/lib/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        body {
-            font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans CJK SC, WenQuanYi Micro Hei, Arial, sans-serif;
-            font-size: 15px;
-            color: #262626;
-            background: #f7f8fa;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        }
-        .login-header {
-            font-size: 150%;
-            margin-bottom: 20px;
-        }
-        .login {
-            margin-bottom: 10px;
-            background: #FFFFFF;
-            border: 1px solid #e7eaf1;
-            border-radius: 2px;
-            box-shadow: 0 1px 3px rgba(0,37,55,.05);
-            box-sizing: border-box;
-            line-height: 2;
-            margin-top: 20px;
-            padding: 5px 5px;
-        }
-        .login-header a:link{
-            text-decoration:none;
-            color: gray;
-            /*background-color: #ffffff;*/
-        }
-        .login-header a:visited {
-            color: gray;
-            /*background-color: #ffffff;*/
-        }
-        .login-header a:hover {
-            text-decoration:none;
-            /*background-color: #fafafa;*/
-            color: gray;
-        }
-        .login-header a.active {
-            color: #0090ef;
-        }
-    </style>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    
+<link href="/lib/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/lib/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+<link href="/lib/css/font-awesome.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+<link href="/lib/css/style.css" rel="stylesheet" type="text/css">
+<link href="/lib/css/pages/signin.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
+<div ng-app="payroll_app" ng-controller="payroll_controller">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="index.html">
+                    工资管理系统
+                </a>
+                <%--<div class="nav-collapse">--%>
+                    <%--<ul class="nav pull-right">--%>
+                        <%----%>
+                        <%--<li class="">						--%>
+                            <%--<a href="signup.html" class="">--%>
+                                <%--Don't have an account?--%>
+                            <%--</a>--%>
+                            <%----%>
+                        <%--</li>--%>
+                        <%----%>
+                        <%--<li class="">						--%>
+                            <%--<a href="index.html" class="">--%>
+                                <%--<i class="icon-chevron-left"></i>--%>
+                                <%--Back to Homepage--%>
+                            <%--</a>--%>
+                            <%----%>
+                        <%--</li>--%>
+                    <%--</ul>--%>
+                    <%----%>
+                <%--</div><!--/.nav-collapse -->	--%>
+            </div> <!-- /container -->
+        </div> <!-- /navbar-inner -->
+    </div> <!-- /navbar -->
 
-<div class="container-fluid">
-    <div ng-app="payroll_app" ng-controller="payroll_controller">
-        <div class="col-md-4 col-md-offset-4 login">
-            <div class="row login-header">
-                <div class="col-md-offset-4 col-md-6">
-                    <a>工资管理系统</a>
-                </div>
-            </div>
-            <form class="form-horizontal" action="/login/check" method="post">
-                <!-- Username -->
-                <div class="form-group">
-                    <label for="id" class="col-md-3 control-label">工号</label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" id="id" name="id" placeholder="">
-                    </div>
-                </div>
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password" class="col-md-3 control-label">密码</label>
-                    <div class="col-md-7">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-3 col-md-2">
-                        <button type="submit" class="btn btn-default">登录</button>
-                    </div>
-                    <div class="col-md-7">
-                        <h5>{{ note }}</h5>
-                    </div>
-                </div>
+    <div class="account-container">
+        <div class="content clearfix">
+            <form action="/login/check" method="post">
+                <h1>登陆</h1>
+                <div class="login-fields">
+                    <p>{{ note }}</p>
+                    <div class="field">
+                        <label for="id">Username</label>
+                        <input type="text" id="id" name="id" value="" placeholder="用户名" class="login username-field" />
+                    </div> <!-- /id -->
+                    <div class="field">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" value="" placeholder="密码" class="login password-field"/>
+                    </div> <!-- /password -->
+                </div> <!-- /login-fields -->
+                <div class="login-actions">
+                    <%--<span class="login-checkbox">--%>
+                        <%--<input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />--%>
+                        <%--<label class="choice" for="Field">Keep me signed in</label>--%>
+                    <%--</span>--%>
+                    <button type="submit" class="button btn btn-success btn-large">确认</button>
+                </div> <!-- .actions -->
             </form>
-        </div>
-    </div>
-</div>
+        </div> <!-- /content -->
+    </div> <!-- /account-container -->
+</div> <!-- /angular-js -->
 
+<script src="/lib/js/jquery-1.7.2.min.js"></script>
+<script src="/lib/js/bootstrap.js"></script>
+<script src="/lib/js/signin.js"></script>
+<script src="/lib/angular-1.6.8/angular.min.js"></script>
 <script>
     var app = angular.module("payroll_app", []);
     app.controller("payroll_controller", function($scope){
@@ -108,5 +99,7 @@
     });
 </script>
 
+
 </body>
+
 </html>
