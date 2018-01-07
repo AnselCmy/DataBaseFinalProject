@@ -28,6 +28,7 @@
     <mapping class="com.db.project.entity.PositionLevelEntity"/>
     <mapping class="com.db.project.entity.UserEntity"/>
     <mapping class="com.db.project.entity.VEmployeeEntity"/>
+    <mapping class="com.db.project.entity.VAttendLogEntity"/>
 
   </session-factory>
 </hibernate-configuration>
