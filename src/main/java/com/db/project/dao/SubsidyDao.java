@@ -1,6 +1,6 @@
 package com.db.project.dao;
 
-import com.db.project.entity.AttendLogEntity;
+import com.db.project.entity.SubsidyLogEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,7 +10,7 @@ import org.hibernate.classic.Session;
 import java.sql.Date;
 import java.util.List;
 
-public class AttendLogDao{
+public class SubsidyDao{
 
     private Session session = null;
     private Transaction tx = null;
@@ -21,7 +21,7 @@ public class AttendLogDao{
         Query, Add, Update, Delete
     }
 
-    public AttendLogDao() {
+    public SubsidyDao() {
         //实例化Configuration，这行代码默认加载hibernate.cfg.xml文件
         conf = new Configuration().configure();
         //以Configuration创建SessionFactory
@@ -29,10 +29,10 @@ public class AttendLogDao{
     }
 
     /**
-     * AttendLog表操作
+     * SubsidyLog表操作
      * */
-    public List<AttendLogEntity> opeation(AttendLogDao.Opeation p, AttendLogEntity... entity) {
-        List<AttendLogEntity> list = null;
+    public List<SubsidyLogEntity> opeation(SubsidyDao.Opeation p, SubsidyLogEntity... entity) {
+        List<SubsidyLogEntity> list = null;
         String hql;
         try {
             //实例化Session
@@ -40,7 +40,7 @@ public class AttendLogDao{
             tx = session.beginTransaction();
             switch (p) {
                 case Query:
-                    hql = "from AttendLogEntity ";
+                    hql = "from SubsidyLogEntity ";
                     list = session.createQuery(hql).list();
                     break;
                 case Add:
@@ -68,26 +68,15 @@ public class AttendLogDao{
         return list;
     }
 
-    public void add(AttendLogEntity log) {   //增
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.save(log);
-            tx.commit();
-        } catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            session.close();
-        }
+    public void addLog(String ENo, String SLMoney, String SENo, String SLComment) {
+        opeation(Opeation.Add, new SubsidyLogEntity(ENo, new Date(System.currentTimeMillis()), Float.valueOf(SLMoney), SENo, SLComment));
     }
 
-    public void addLog(String ENo, String AENo) {
-        opeation(Opeation.Add, new AttendLogEntity(ENo, new Date(System.currentTimeMillis()), AENo));
+    public void deleteLog(String ENo, String SLDate, String SLMoney, String SENo, String SLComment) {
+        opeation(Opeation.Delete, new SubsidyLogEntity(ENo, Date.valueOf(SLDate), Float.valueOf(SLMoney), SENo, SLComment));
     }
 
-    public void deleteLog(String ENo, String ALDate, String AEName) {
-        opeation(Opeation.Delete, new AttendLogEntity(ENo, Date.valueOf(ALDate), AEName));
+    public static void main(String[] args) {
+        new SubsidyDao().addLog("2007000000", "8888", "04", "%测试专用%");
     }
-
 }

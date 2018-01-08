@@ -13,6 +13,16 @@ public class SubsidyLogEntity {
     private String seNo;
     private String slComment;
 
+    public SubsidyLogEntity(String eNo, Date slDate, double slMoney, String seNo, String slComment) {
+        seteNo(eNo);
+        setSlDate(slDate);
+        setSlMoney(slMoney);
+        setSeNo(seNo);
+        setSlComment(slComment);
+    }
+
+    public SubsidyLogEntity() {}
+
     @Id
     @Column(name = "ENo")
     public String geteNo() {

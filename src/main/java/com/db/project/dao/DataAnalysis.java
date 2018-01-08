@@ -27,7 +27,7 @@ public class DataAnalysis {
         sf = conf.buildSessionFactory();
     }
 
-    public List<String> Siri(Say word, String... department){
+    public List<String> Siri(Say word){
         // 实例化Session
         try {
             session = sf.openSession();

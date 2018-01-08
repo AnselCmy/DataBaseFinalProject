@@ -43,13 +43,13 @@ public class EmployeeDao{
                     hql = "from EmployeeEntity ";
                     list = session.createQuery(hql).list();
                 case Add:
-                    session.save(entity);
+                    session.save(entity[0]);
                     break;
                 case Delete:
-                    session.delete(entity);
+                    session.delete(entity[0]);
                     break;
                 case Update:
-                    session.update(entity);
+                    session.update(entity[0]);
                     break;
                 default:
                     break;
