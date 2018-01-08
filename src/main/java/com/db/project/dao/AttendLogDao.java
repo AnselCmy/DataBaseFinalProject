@@ -74,20 +74,6 @@ public class AttendLogDao{
         return list;
     }
 
-    public void add(AttendLogEntity log) {   //增
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.save(log);
-            tx.commit();
-        } catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            session.close();
-        }
-    }
-
     public void addLog(String ENo, String AENo) {
         opeation(Opeation.Add, new AttendLogEntity(ENo, new Date(System.currentTimeMillis()), AENo));
     }
