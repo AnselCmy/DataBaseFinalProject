@@ -11,11 +11,15 @@
         <ul class="nav" id="main-menu">
 
             <li>
-                <a class="{{ rootSideBar }}" href="/main"><i class="fa fa-dashboard"></i> 管理面板</a>
+                <a class="{{ mngSideBar }}" href="/main"><i class="fa fa-dashboard"></i> 管理面板</a>
             </li>
             <li>
-                <a class="{{ normalSideBar }}" ng-href="/main/idv"><i class="fa fa-desktop"></i> 个人面板</a>
+                <a class="{{ idvSideBar }}" href="/main/idv"><i class="fa fa-desktop"></i> 个人面板</a>
             </li>
+            <li>
+                <a class="{{ depSideBar }}" href="/main/dep"><i class="fa fa-table"></i> 部门数据统计</a>
+            </li>
+
             <li>
                 <a href="ui-elements.html"><i class="fa fa-desktop"></i> UI Elements</a>
             </li>
@@ -34,10 +38,6 @@
 
             <li>
                 <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
-            </li>
-
-            <li>
-                <a href="table.html"><i class="fa fa-table"></i> Responsive Tables</a>
             </li>
             <li>
                 <a href="form.html"><i class="fa fa-edit"></i> Forms </a>

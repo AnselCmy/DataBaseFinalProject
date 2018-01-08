@@ -4,13 +4,16 @@ import com.db.project.dao.*;
 import com.db.project.entity.AttendLogEntity;
 import com.db.project.entity.EmployeeEntity;
 import net.sf.json.JSONArray;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import sun.security.krb5.internal.crypto.Aes128;
 
 import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,21 +75,40 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/addsubsidylog", method = RequestMethod.POST)
-    @ResponseBody
     public String AddSubsidyLog(ModelMap model, HttpSession session,
                                @RequestParam(value = "ENo") String ENo,
                                @RequestParam(value = "SENo") String SENo,
                                @RequestParam(value = "SLMoney") String SLMoney,
                                @RequestParam(value = "SLComment") String SLComment) {
-        return ENo+"/"+SENo+"/"+SLMoney+"/"+SLComment;
+        SubsidyLogDao subsidyLogDao = new SubsidyLogDao();
+        subsidyLogDao.addLog(ENo, SLMoney, SENo, SLComment);
+        return  "redirect:/employee/"+ENo;
     }
 
-    @RequestMapping("/deletesubsidylog/{ENo}/{SEDate}/{SENo}")
-    @ResponseBody
+    static class EncodingTool {
+        public static String encodeStr(String str) {
+            try {
+                return new String(str.getBytes("ISO-8859-1"), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    @RequestMapping("/deletesubsidylog/{ENo}/{SLDate}/{SENo}/{SLMoney}/{SLComment}")
     public String DeleteSubsidyLog(ModelMap model, HttpSession session,
                                   @PathVariable String ENo,
-                                  @PathVariable String SEDate,
-                                  @PathVariable String SENo) {
-        return ENo+"/"+SENo+"/"+SEDate;
+                                  @PathVariable String SLDate,
+                                  @PathVariable String SENo,
+                                  @PathVariable String SLMoney,
+                                  @PathVariable String SLComment) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        SLComment = EncodingTool.encodeStr(SLComment);
+//        System.out.println(SLComment);
+        SubsidyLogDao subsidyLogDao = new SubsidyLogDao();
+        subsidyLogDao.deleteLog(ENo, SLDate, SLMoney, SENo, SLComment);
+        return "redirect:/employee/"+ENo;
     }
 }
+

@@ -37,18 +37,29 @@
         <div id="page-wrapper">
             <div class="header">
                 <h1 class="page-header">
-                    员工工资详情 <small>{{ currEmployee.EName }}</small>
+                    部门数据统计
                 </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#">{{ currEmployee.ENo }}</a></li>
-                    <li><a href="#">{{ currEmployee.EName }}</a></li>
-                    <li><a href="#">{{ currEmployee.DName }}</a></li>
-                    <li><a href="#">{{ currEmployee.PosName }}</a></li>
-                </ol>
+                <%--<ol class="breadcrumb">--%>
+                    <%--<li><a href="#">{{ currEmployee.ENo }}</a></li>--%>
+                    <%--<li><a href="#">{{ currEmployee.EName }}</a></li>--%>
+                    <%--<li><a href="#">{{ currEmployee.DName }}</a></li>--%>
+                    <%--<li><a href="#">{{ currEmployee.PosName }}</a></li>--%>
+                <%--</ol>--%>
             </div>
             <div id="page-inner">
-                <jsp:include page="idv_inner_page.jsp" flush="true" />
-            </div> <!-- ./page-inner -->
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Bar Chart Example
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-bar-chart"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> <!-- ./page-inner -->
         </div> <!-- ./page-wrapper -->
     </div> <!-- ./wrapper -->
 </div> <!-- ./angular-js -->
@@ -78,30 +89,29 @@
     app.controller("payroll_controller", function($scope){
         $scope.currEmployee = JSON.parse('${currEmployee}')[0];
         <%--$scope.searchEmployee = JSON.parse('${searchEmployee}')[0];--%>
-        $scope.searchAttendLog = JSON.parse('${searchAttendLog}');
-        $scope.searchSubsidyLog = JSON.parse('${searchSubsidyLog}');
-        $scope.searchPayroll = JSON.parse('${searchPayroll}');
+        <%--$scope.searchAttendLog = JSON.parse('${searchAttendLog}');--%>
+        <%--$scope.searchPayroll = JSON.parse('${searchPayroll}');--%>
         <%--$scope.allEvent = JSON.parse('${allEvent}');--%>
+        $scope.depDataByYear = ${depDataByYear};
         $scope.mngSideBar = "";
-        $scope.idvSideBar = "active-menu";
-        $scope.depSideBar = "";
+        $scope.idvSideBar = "";
+        $scope.depSideBar = "active-menu";
     });
 
-    Morris.Line({
-        element: 'morris-line-chart',
-        data: JSON.parse('${searchPayroll}'),
-        xkey: 'PDate',
-        ykeys: ['PPayroll'],
-        ymin: 'auto',
-        labels: ['工资'],
-        fillOpacity: 0.6,
-        hideHover: 'auto',
-        behaveLikeLine: true,
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: ${depDataByYear},
+        xkey: 'DName',
+        ykeys: ['Max', 'Min', 'Payroll'],
+        labels: ['最高工资', '最低工资', '平均工资'],
+        barColors: [
+            '#22a7f0',
+            '#1abc9c',
+            '#f92f7d'
+        ],
+        hideHover: 'false',
         resize: true,
-        pointFillColors:['#ffffff'],
-        pointStrokeColors: ['black'],
-        lineColors:['gray','#1abc9c']
-
+        xLabelMargin: 10
     });
 </script>
 </body>

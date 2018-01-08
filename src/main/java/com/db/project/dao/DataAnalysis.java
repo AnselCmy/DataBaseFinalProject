@@ -19,7 +19,7 @@ public class DataAnalysis {
     Configuration conf = null;
     SessionFactory sf = null;
 
-    enum Say {
+    public static enum Say {
         Min, Max, Avg
     }
 
@@ -57,7 +57,7 @@ public class DataAnalysis {
             HashMap<String, String> tempMap;
             for(int i=0; i<queryList.size(); i++) {
                 tempMap = new HashMap<String, String>();
-                tempMap.put("DName", queryList.get(i).getdNo());
+                tempMap.put("DName", queryList.get(i).getdName());
                 tempMap.put("Payroll", String.valueOf(queryList.get(i).getPayroll()));
                 tempMap.put("Max", String.valueOf(queryList.get(i).getMax()));
                 tempMap.put("Min", String.valueOf(queryList.get(i).getMin()));
