@@ -2,8 +2,6 @@ package com.db.project.dao;
 
 import com.db.project.entity.AttendLogEntity;
 import com.db.project.entity.VAttendLog2Entity;
-import com.db.project.entity.VAttendLogEntity;
-import com.db.project.entity.VEmployeeEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -12,7 +10,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
 
 import java.sql.Date;
-import org.hibernate.hql.ast.HqlASTFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
