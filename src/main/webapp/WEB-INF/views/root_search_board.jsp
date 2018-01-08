@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: chen
-  Date: 2018/1/7
-  Time: 上午10:39
+  Date: 2018/1/9
+  Time: 上午3:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -37,44 +37,28 @@
         <div id="page-wrapper">
             <div class="header">
                 <h1 class="page-header">
-                    部门数据统计
+                    搜索
                 </h1>
                 <%--<ol class="breadcrumb">--%>
-                    <%--<li><a href="#">{{ currEmployee.ENo }}</a></li>--%>
-                    <%--<li><a href="#">{{ currEmployee.EName }}</a></li>--%>
-                    <%--<li><a href="#">{{ currEmployee.DName }}</a></li>--%>
-                    <%--<li><a href="#">{{ currEmployee.PosName }}</a></li>--%>
+                <%--<li><a href="#">{{ currEmployee.ENo }}</a></li>--%>
+                <%--<li><a href="#">{{ currEmployee.EName }}</a></li>--%>
+                <%--<li><a href="#">{{ currEmployee.DName }}</a></li>--%>
+                <%--<li><a href="#">{{ currEmployee.PosName }}</a></li>--%>
                 <%--</ol>--%>
             </div>
             <div id="page-inner">
-                <!-- 全年工资柱状图 -->
+                <!-- 按部门搜索 -->
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            全年工资柱状图
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-bar-chart1"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ./全年工资柱状图 -->
-
-                <!-- 每月工资柱状图 -->
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            每月工资柱状图
+                            按部门搜索
                         </div>
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label for="month" class="col-md-1 control-label">月份</label>
+                                <label for="dep" class="col-md-1 control-label">部门</label>
                                 <div class="col-md-10">
-                                    <select class="form-control" ng-model="monthChosen" id="month" name="month"
-                                            ng-options="m.key for m in month" ng-change="changeMonth(monthChosen.val)">
-                                        <%--<option ng-repeat="m in month">--%>
-                                            <%--{{ m }}--%>
-                                        <%--</option>--%>
+                                    <select class="form-control" ng-model="depChosen" id="dep" name="dep"
+                                            ng-options="d.DName for d in allDepartment" ng-change="changeMonth(monthChosen.val)">
                                     </select>
                                 </div>
                             </div>
@@ -86,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- ./每月工资柱状图 -->
+                <!-- ./按部门搜索 -->
             </div> <!-- ./page-inner -->
         </div> <!-- ./page-wrapper -->
     </div> <!-- ./wrapper -->
@@ -116,48 +100,18 @@
     var app = angular.module("payroll_app", []);
     app.controller("payroll_controller", function($scope){
         $scope.currEmployee = JSON.parse('${currEmployee}')[0];
+        $scope.allEMployee = JSON.parse('${allEmployee}');
+        $scope.allDepartment = JSON.parse('${allDepartment}');
         <%--$scope.searchEmployee = JSON.parse('${searchEmployee}')[0];--%>
         <%--$scope.searchAttendLog = JSON.parse('${searchAttendLog}');--%>
         <%--$scope.searchPayroll = JSON.parse('${searchPayroll}');--%>
         <%--$scope.allEvent = JSON.parse('${allEvent}');--%>
-        $scope.depDataByYear = ${depDataByYear};
+        <%--$scope.depDataByYear = ${depDataByYear};--%>
         $scope.mngSideBar = "";
         $scope.idvSideBar = "";
         $scope.depSideBar = "active-menu";
-        $scope.month = [{"val":"1", "key":"一月"},
-                        {"val":"2", "key":"二月"},
-                        {"val":"3", "key":"三月"},
-                        {"val":"4", "key":"四月"},
-                        {"val":"5", "key":"五月"},
-                        {"val":"6", "key":"六月"},
-                        {"val":"7", "key":"七月"},
-                        {"val":"8", "key":"八月"},
-                        {"val":"9", "key":"九月"},
-                        {"val":"10", "key":"十月"},
-                        {"val":"11", "key":"十一月"},
-                        {"val":"12", "key":"十二月"}];
-        $scope.count = 0;
-        $scope.changeMonth = function(param){
-            morrisBayMonth.setData();
-        }
     });
 
-
-    var morrisBayMonth = Morris.Bar({
-        element: 'morris-bar-chart1',
-        data: ${depDataByYear},
-        xkey: 'DName',
-        ykeys: ['Max', 'Min', 'Payroll'],
-        labels: ['最高工资', '最低工资', '平均工资'],
-        barColors: [
-            '#22a7f0',
-            '#1abc9c',
-            '#f92f7d'
-        ],
-        hideHover: 'false',
-        resize: true,
-        xLabelMargin: 10
-    });
 </script>
 </body>
 

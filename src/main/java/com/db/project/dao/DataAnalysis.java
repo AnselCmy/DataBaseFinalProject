@@ -62,7 +62,7 @@ public class DataAnalysis {
         try {
             session = sf.openSession();
             tx = session.beginTransaction();
-            String hql = "from VCountPayrollByMonthEntity p";
+            String hql = "from VCountPayrollByMonthEntity p ";
             Query query = session.createQuery(hql);
             tx.commit();
             List<HashMap<String, String>> rst = new ArrayList<HashMap<String, String>>();

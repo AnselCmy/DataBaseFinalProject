@@ -9,6 +9,7 @@ import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class MainController {
         DataAnalysis dataAnalysis = new DataAnalysis();
         EmployeeDao employeeDao = new EmployeeDao();
         HashMap<String, String> currEmployee = employeeDao.getEntityWithMapByENo(currENo);
-        List<HashMap<String, String>> depDataByYear = dataAnalysis.Siri(DataAnalysis.Say.Avg);
+        List<HashMap<String, String>> depDataByYear = dataAnalysis.CountPayrollByYear();
         model.addAttribute("currEmployee", JSONArray.fromObject(currEmployee).toString());
         model.addAttribute("depDataByYear", JSONArray.fromObject(depDataByYear).toString());
         return "root_dep_board";
@@ -106,5 +107,19 @@ public class MainController {
         else {
             return "normal_idv_board";
         }
+    }
+
+    @RequestMapping("/search")
+    public String Search(ModelMap model, HttpSession session) {
+        String currENo = String.valueOf(session.getAttribute("currENo"));
+        EmployeeDao employeeDao = new EmployeeDao();
+        DepartmentDao departmentDao = new DepartmentDao();
+        List<HashMap<String, String>> allDepartment = departmentDao.getAllDepartmentWithMap();
+        List<HashMap<String, String>> allEmployee = employeeDao.getAllEntityWithMap();
+        HashMap<String, String> currEmployee = employeeDao.getEntityWithMapByENo(currENo);
+        model.addAttribute("currEmployee", JSONArray.fromObject(currEmployee).toString());
+        model.addAttribute("allEmployee", JSONArray.fromObject(allEmployee).toString());
+        model.addAttribute("allDepartment", JSONArray.fromObject(allDepartment).toString());
+        return "root_search_board";
     }
 }
