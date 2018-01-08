@@ -1,7 +1,6 @@
 import com.db.project.dao.EmployeeDao;
 import com.db.project.entity.EmployeeEntity;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -39,7 +38,7 @@ public class Update {
 
         EmployeeDao dao = new EmployeeDao();      //更新Employee入职时间信息，范围发生变化：2000~2017 改为 2000~2016
         String date, temp;
-        List<EmployeeEntity> list = dao.query();
+        List<EmployeeEntity> list = dao.opeation(EmployeeDao.Opeation.Query);
         System.out.println(list.get(0).geteName());
         for(int i=0; i<list.size(); i++) {
             date = list.get(i).geteEntryDate().toString();

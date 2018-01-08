@@ -4,7 +4,6 @@ package com.db.project.controller;
 import com.db.project.dao.EmployeeDao;
 import com.db.project.dao.UserDao;
 import com.db.project.entity.EmployeeEntity;
-import com.db.project.entity.VEmployeeEntity;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

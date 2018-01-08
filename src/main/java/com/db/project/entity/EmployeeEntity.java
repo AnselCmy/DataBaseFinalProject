@@ -31,6 +31,7 @@ public class EmployeeEntity {
 
     public EmployeeEntity() {}
 
+
     @Id
     @Column(name = "ENo")
     public String geteNo() {

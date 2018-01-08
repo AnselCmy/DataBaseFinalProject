@@ -2,7 +2,6 @@ package com.db.project.dao;
 
 import com.db.project.entity.EmployeeEntity;
 import com.db.project.entity.VEmployeeEntity;
-import net.sf.json.JSONArray;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -18,6 +17,9 @@ public class EmployeeDao{
     private Transaction tx = null;
     private Configuration conf = null;
     private SessionFactory sf = null;
+    public static enum Opeation {
+        Query, Add, Update, Delete
+    }
 
     public EmployeeDao() {
         //实例化Configuration，这行代码默认加载hibernate.cfg.xml文件
@@ -27,16 +29,31 @@ public class EmployeeDao{
     }
 
     /**
-     * 查询Employee表所有数据
+     * Employee表操作
      * */
-    public List<EmployeeEntity> query() {
+    public List<EmployeeEntity> opeation(Opeation p, EmployeeEntity... entity) {
         List<EmployeeEntity> list = null;
         try {
             //实例化Session
             session = sf.openSession();
+            String hql;
             tx = session.beginTransaction();
-            String hql = "from EmployeeEntity ";
-            list = session.createQuery(hql).list();
+            switch (p) {
+                case Query:
+                    hql = "from EmployeeEntity ";
+                    list = session.createQuery(hql).list();
+                case Add:
+                    session.save(entity);
+                    break;
+                case Delete:
+                    session.delete(entity);
+                    break;
+                case Update:
+                    session.update(entity);
+                    break;
+                default:
+                    break;
+            }
             tx.commit();
         } catch (HibernateException e) {
             tx.rollback();
@@ -48,69 +65,6 @@ public class EmployeeDao{
             }
         }
         return list;
-    }
-
-    public void add(EmployeeEntity employee) {   //增
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.save(employee);
-            tx.commit();
-        } catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            session.close();
-        }
-    }
-
-    public void delete(String id) {   //删
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.delete(session.get(EmployeeEntity.class, id));
-            tx.commit();
-        }
-        catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        }
-        finally {
-            session.close();
-        }
-    }
-
-    public void update(EmployeeEntity employee) {   //更新
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.update(employee);
-            tx.commit();
-        }
-        catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        }
-        finally {
-            session.close();
-        }
-    }
-
-    public EmployeeEntity getById(int id) {    //查
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            EmployeeEntity find = (EmployeeEntity) session.get(EmployeeEntity.class, id);
-            tx.commit();
-            return find;
-        }
-        catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        }
-        finally {
-            session.close();
-        }
     }
 
     public EmployeeEntity getEntityByENo(String ENo) {

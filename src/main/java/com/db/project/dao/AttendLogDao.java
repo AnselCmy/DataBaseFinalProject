@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
+
+import java.sql.Date;
 import java.util.List;
 
 public class AttendLogDao{
@@ -15,6 +17,10 @@ public class AttendLogDao{
     Configuration conf = null;
     SessionFactory sf = null;
 
+    public static enum Opeation {
+        Query, Add, Update, Delete
+    }
+
     public AttendLogDao() {
         //实例化Configuration，这行代码默认加载hibernate.cfg.xml文件
         conf = new Configuration().configure();
@@ -23,16 +29,32 @@ public class AttendLogDao{
     }
 
     /**
-     * 查询Employee表所有数据
+     * AttendLog表操作
      * */
-    public List<AttendLogEntity> query() {
+    public List<AttendLogEntity> opeation(AttendLogDao.Opeation p, AttendLogEntity... entity) {
         List<AttendLogEntity> list = null;
         try {
             //实例化Session
             session = sf.openSession();
+            String hql;
             tx = session.beginTransaction();
-            String hql = "from AttendLogEntity ";
-            list = session.createQuery(hql).list();
+            switch (p) {
+                case Query:
+                    hql = "from AttendLogEntity ";
+                    list = session.createQuery(hql).list();
+                    break;
+                case Add:
+                    session.save(entity);
+                    break;
+                case Delete:
+                    session.delete(entity);
+                    break;
+                case Update:
+                    session.update(entity);
+                    break;
+                default:
+                    break;
+            }
             tx.commit();
         } catch (HibernateException e) {
             tx.rollback();
@@ -46,66 +68,12 @@ public class AttendLogDao{
         return list;
     }
 
-    public void add(AttendLogEntity log) {   //增
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.save(log);
-            tx.commit();
-        } catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            session.close();
-        }
+    public void addLog(String ENo, String AENo) {
+        opeation(Opeation.Add, new AttendLogEntity(ENo, new Date(System.currentTimeMillis()), AENo));
     }
 
-    public void delete(String id) {   //删
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.delete(session.get(AttendLogEntity.class, id));
-            tx.commit();
-        }
-        catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        }
-        finally {
-            session.close();
-        }
+    public void deleteLog(String ENo, String ALDate, String AEName) {
+
     }
 
-    public void update(AttendLogEntity log) {   //更新
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            session.update(log);
-            tx.commit();
-        }
-        catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        }
-        finally {
-            session.close();
-        }
-    }
-
-    public AttendLogEntity getById(int id) {    //查
-        try {
-            session = sf.openSession();
-            tx = session.beginTransaction();
-            AttendLogEntity find = (AttendLogEntity) session.get(AttendLogEntity.class, id);
-            tx.commit();
-            return find;
-        }
-        catch (HibernateException e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        }
-        finally {
-            session.close();
-        }
-    }
 }
