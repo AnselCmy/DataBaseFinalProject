@@ -75,20 +75,13 @@ BEGIN
         DECLARE lastDate CHAR(10);
 
         SET i=0;
-        SET mon=mon-1; #上个月
-        IF mon<10 THEN            #构造上个月的第一天,然后用lastDate()函数获得上个月最后一天
-            SELECT concat('2017-0', mon, '-01') into lastDate;
-        ELSE
-            SELECT concat('2017-', mon, '-01') into lastDate;
-        END IF;
         DECLARE money FLOAT;
         SELECT COUNT(*) INTO num FROM Employee;
-        SELECT concat('%2017-0', mon, '%') into lastDate;
         WHILE i<num DO
             SELECT ENo INTO noo FROM Employee LIMIT i,1;
             CALL PERSON(noo, 10, money);
             INSERT INTO Payroll
-                VALUES (noo, (last_day(lastDate)), money);
+                VALUES (noo, date_add(curdate(), INTERVAL -1 DAY), money);
             SET i = i+1;
         END WHILE;
     END IF;

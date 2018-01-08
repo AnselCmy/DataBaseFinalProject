@@ -11,7 +11,7 @@ public class VAttendLog2Entity {
     private String aeNo;
     private String aeName;
     private double aeMoney;
-
+    
     @Basic
     @Column(name = "ENo")
     public String geteNo() {
