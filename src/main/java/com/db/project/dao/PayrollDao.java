@@ -1,7 +1,6 @@
 package com.db.project.dao;
 
 import com.db.project.entity.PayrollEntity;
-import com.db.project.entity.VAttendLogEntity;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
