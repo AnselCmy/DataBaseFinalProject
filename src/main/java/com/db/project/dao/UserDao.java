@@ -1,6 +1,7 @@
 package com.db.project.dao;
 
 import com.db.project.entity.UserEntity;
+import com.db.project.entity.VEmployeeEntity;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -59,5 +60,18 @@ public class UserDao {
         query.setParameter("ENo", ENo);
         rstList = query.list();
         return rstList.get(0);
+    }
+
+    /*
+    给指定的用户设置新密码
+     */
+    public void setNewPassword(String ENo, String UPassword) {
+        List<VEmployeeEntity> queryList;
+        session = sf.openSession();
+        String hql = "update UserEntity u set u.uPassword = :UPassword where u.eNo = :ENo";
+        Query query = session.createQuery(hql);
+        query.setParameter("ENo", ENo);
+        query.setParameter("UPassword", UPassword);
+        query.executeUpdate();
     }
 }

@@ -33,6 +33,7 @@
     <mapping class="com.db.project.entity.VAvgPayrollEntity"/>
     <mapping class="com.db.project.entity.VAttendLog2Entity"/>
     <mapping class="com.db.project.entity.VCountPayrollEntity"/>
+    <mapping class="com.db.project.entity.VAttendLogEntity"/>
 
   </session-factory>
 </hibernate-configuration>

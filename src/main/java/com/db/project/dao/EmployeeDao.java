@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeDao{
@@ -77,36 +78,50 @@ public class EmployeeDao{
         return rstList.get(0);
     }
 
-    public List<ArrayList<String>> getAllEntityWithList() {
+    public HashMap<String, String> getEntityWithMapByENo(String ENo) {
+        List<VEmployeeEntity> queryList;
+        VEmployeeEntity entity;
+        HashMap<String, String> rstMap = new HashMap<String, String>();
+        session = sf.openSession();
+        String hql = "from VEmployeeEntity v where v.eNo = :ENo";
+        Query query = session.createQuery(hql);
+        query.setParameter("ENo", ENo);
+        queryList = query.list();
+        entity = queryList.get(0);
+        rstMap.put("ENo", entity.geteNo());
+        rstMap.put("EName", entity.geteName());
+        rstMap.put("EId", entity.geteId());
+        rstMap.put("ESex", entity.geteSex());
+        rstMap.put("EEntryDate", entity.geteEntryDate().toString());
+        rstMap.put("DName", entity.getdName());
+        rstMap.put("PosName", entity.getPosName());
+        rstMap.put("ETel", entity.geteTel());
+        rstMap.put("EAge", String.valueOf((entity.geteAge()).intValue()));
+        return rstMap;
+    }
+
+    public List<HashMap<String, String>> getAllEntityWithMap() {
         List<VEmployeeEntity> queryList;
         session = sf.openSession();
         String hql = "from VEmployeeEntity";
         Query query = session.createQuery(hql);
         queryList = query.list();
-        ArrayList<String> temp;
-        ArrayList<ArrayList<String>> rstList = new ArrayList<ArrayList<String>>();
+        HashMap<String, String> temp;
+        ArrayList<HashMap<String, String>> rstList = new ArrayList<HashMap<String, String>>();
         for(VEmployeeEntity entity: queryList) {
-            temp = new ArrayList<String>();
-            temp.add(entity.geteNo());
-            temp.add(entity.geteId());
-            temp.add(entity.geteName());
-            temp.add(entity.geteSex());
-            temp.add(entity.geteEntryDate().toString());
-            temp.add(entity.getdName());
-            temp.add(entity.getPosName());
-            temp.add(entity.geteTel());
-            temp.add(entity.geteAge().toString());
+            temp = new HashMap<String, String>();
+            temp.put("ENo", entity.geteNo());
+            temp.put("EName", entity.geteName());
+            temp.put("EId", entity.geteId());
+            temp.put("ESex", entity.geteSex());
+            temp.put("EEntryDate", entity.geteEntryDate().toString());
+            temp.put("DName", entity.getdName());
+            temp.put("PosName", entity.getPosName());
+            temp.put("ETel", entity.geteTel());
+            temp.put("EAge", String.valueOf((entity.geteAge()).intValue()));
             rstList.add(temp);
         }
         return rstList;
     }
 
-//    public JSONArray getAllEntityWithList() {
-//        List<VEmployeeEntity> queryList;
-//        session = sf.openSession();
-//        String hql = "from VEmployeeEntity";
-//        Query query = session.createQuery(hql);
-//        queryList = query.list();
-//        return JSONArray.fromObject(queryList);
-//    }
 }
