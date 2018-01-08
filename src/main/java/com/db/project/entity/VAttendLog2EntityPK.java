@@ -1,21 +1,17 @@
 package com.db.project.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Date;
 
-@Entity
-@Table(name = "v_AttendLog2", schema = "PayrollManagement", catalog = "")
-@IdClass(VAttendLog2EntityPK.class)
-public class VAttendLog2Entity {
+public class VAttendLog2EntityPK implements Serializable {
     private String eNo;
     private Date alDate;
     private String aeNo;
-    private String aeName;
-    private double aeMoney;
-    
-    @Id
-    @Basic
+
     @Column(name = "ENo")
+    @Id
     public String geteNo() {
         return eNo;
     }
@@ -24,9 +20,8 @@ public class VAttendLog2Entity {
         this.eNo = eNo;
     }
 
-    @Id
-    @Basic
     @Column(name = "ALDate")
+    @Id
     public Date getAlDate() {
         return alDate;
     }
@@ -35,9 +30,8 @@ public class VAttendLog2Entity {
         this.alDate = alDate;
     }
 
-    @Id
-    @Basic
     @Column(name = "AENo")
+    @Id
     public String getAeNo() {
         return aeNo;
     }
@@ -46,52 +40,25 @@ public class VAttendLog2Entity {
         this.aeNo = aeNo;
     }
 
-    @Basic
-    @Column(name = "AEName")
-    public String getAeName() {
-        return aeName;
-    }
-
-    public void setAeName(String aeName) {
-        this.aeName = aeName;
-    }
-
-    @Basic
-    @Column(name = "AEMoney")
-    public double getAeMoney() {
-        return aeMoney;
-    }
-
-    public void setAeMoney(double aeMoney) {
-        this.aeMoney = aeMoney;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        VAttendLog2Entity that = (VAttendLog2Entity) o;
+        VAttendLog2EntityPK that = (VAttendLog2EntityPK) o;
 
-        if (Double.compare(that.aeMoney, aeMoney) != 0) return false;
         if (eNo != null ? !eNo.equals(that.eNo) : that.eNo != null) return false;
         if (alDate != null ? !alDate.equals(that.alDate) : that.alDate != null) return false;
         if (aeNo != null ? !aeNo.equals(that.aeNo) : that.aeNo != null) return false;
-        if (aeName != null ? !aeName.equals(that.aeName) : that.aeName != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = eNo != null ? eNo.hashCode() : 0;
+        int result = eNo != null ? eNo.hashCode() : 0;
         result = 31 * result + (alDate != null ? alDate.hashCode() : 0);
         result = 31 * result + (aeNo != null ? aeNo.hashCode() : 0);
-        result = 31 * result + (aeName != null ? aeName.hashCode() : 0);
-        temp = Double.doubleToLongBits(aeMoney);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 }

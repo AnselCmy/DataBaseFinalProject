@@ -95,8 +95,8 @@ public class AttendLogDao{
         opeation(Opeation.Add, new AttendLogEntity(ENo, new Date(System.currentTimeMillis()), AENo));
     }
 
-    public void deleteLog(String ENo, String ALDate, String AEName) {
-        opeation(Opeation.Delete, new AttendLogEntity(ENo, Date.valueOf(ALDate), AEName));
+    public void deleteLog(String ENo, String ALDate, String AENo) {
+        opeation(Opeation.Delete, new AttendLogEntity(ENo, Date.valueOf(ALDate), AENo));
     }
 
     public AttendLogEntity getById(int id) {    //查
@@ -139,5 +139,10 @@ public class AttendLogDao{
         }
         session.close();
         return rstList;
+    }
+
+    public static void main(String[] args) {
+        AttendLogDao attendLogDao = new AttendLogDao();
+        attendLogDao.addLog("2000000041", "00");
     }
 }

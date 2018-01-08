@@ -47,58 +47,6 @@
                 </ol>
             </div>
             <div id="page-inner">
-                <!-- 考勤记录 -->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                考勤记录
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>日期</th>
-                                            <th>事件</th>
-                                            <th>奖罚金额</th>
-                                            <th>操作</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="log in searchAttendLog">
-                                            <td>{{ log.ALDate }}</td>
-                                            <td>{{ log.AEName }}</td>
-                                            <td>{{ log.AEMoney }}</td>
-                                            <td>
-                                                <a class="btn btn-danger"
-                                                   ng-href="/employee/deleteattendlog/{{ searchEmployee.ENo }}/{{ log.ALDate }}/{{ log.AENo }}"
-                                                   role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div>
-                                    <form action="/employee/addattendlog" method="post" class="form-inline">
-                                        <fieldset class="form-group">
-                                            <label for="AENo">添加记录 &nbsp</label>
-                                            <select class="form-control" id="AENo" name="AENo">
-                                                <option ng-repeat="e in allEvent" VALUE="{{ e.AENo }}">
-                                                    {{ e.AEName }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                </option>
-                                            </select>
-                                        </fieldset>
-                                        <input type="hidden" id="ENo" name="ENo" value="{{ searchEmployee.ENo }}">
-                                        <button type="submit" class="button btn btn-success btn-large">确认</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> <!-- ./panel -->
-                    </div>
-                </div> <!-- ./row -->
-                <!-- /考勤记录 -->
-
                 <!-- 工资记录 -->
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -140,6 +88,199 @@
                     </div>
                 </div> <!-- ./row -->
                 <!-- /工资记录 -->
+
+                <!-- 考勤记录 -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                考勤记录
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>日期</th>
+                                            <th>事件</th>
+                                            <th>奖罚金额</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="log in searchAttendLog">
+                                            <td>{{ log.ALDate }}</td>
+                                            <td>{{ log.AEName }}</td>
+                                            <td>{{ log.AEMoney }}</td>
+                                            <td>
+                                                <a class="btn btn-danger"
+                                                   ng-href="/employee/deleteattendlog/{{ searchEmployee.ENo }}/{{ log.ALDate }}/{{ log.AENo }}"
+                                                   role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <%--<div>--%>
+                                    <%--<form action="/employee/addattendlog" method="post" class="form-inline">--%>
+                                        <%--<fieldset class="form-group">--%>
+                                            <%--<label for="AENo">添加记录 &nbsp</label>--%>
+                                            <%--<select class="form-control" id="AENo" name="AENo">--%>
+                                                <%--<option ng-repeat="e in allEvent" VALUE="{{ e.AENo }}">--%>
+                                                    <%--{{ e.AEName }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp--%>
+                                                <%--</option>--%>
+                                            <%--</select>--%>
+                                        <%--</fieldset>--%>
+                                        <%--<input type="hidden" id="ENo" name="ENo" value="{{ searchEmployee.ENo }}">--%>
+                                        <%--<button type="submit" class="button btn btn-success btn-large">确认</button>--%>
+                                    <%--</form>--%>
+                                <%--</div>--%>
+                            </div>
+                        </div> <!-- ./panel -->
+                    </div>
+                </div> <!-- ./row -->
+                <!-- /考勤记录 -->
+
+                <!-- 添加考勤记录 -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                添加考勤
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="/employee/addattendlog" method="post">
+                                    <div class="form-group">
+                                        <label for="SENo" class="col-md-1 control-label">类型</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" id="AENo" name="AENo">
+                                                <option ng-repeat="e in allEvent" VALUE="{{ e.AENo }}">
+                                                    {{ e.AEName }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="ENo" name="ENo" value="{{ searchEmployee.ENo }}">
+                                    <div class="col-md-1">
+                                        <button type="submit" class="btn btn-default">确认</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./添加考勤记录 -->
+
+                <!-- 津贴记录 -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                津贴记录
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>日期</th>
+                                            <th>津贴</th>
+                                            <th>金额</th>
+                                            <th>备注</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="log in searchSubsidyLog">
+                                            <td>{{ log.SLDate }}</td>
+                                            <td>{{ log.SEName }}</td>
+                                            <td>{{ log.SLMoney }}</td>
+                                            <td>{{ log.SLComment }}</td>
+                                            <td>
+                                                <a class="btn btn-danger"
+                                                   ng-href="/employee/deletesubsidylog/{{ searchEmployee.ENo }}/{{ log.SLDate }}/{{ log.SENo }}"
+                                                   role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /table -->
+                            </div>
+                        </div> <!-- ./panel -->
+                    </div>
+                </div> <!-- ./row -->
+                <!-- /津贴记录 -->
+
+                <!-- 添加津贴记录 -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                添加津贴
+                            </div>
+                            <div class="panel-body">
+                                <%--<form class="form-inline">--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label for="SENo">类型</label>--%>
+                                        <%--&lt;%&ndash;<input type="text" class="form-control" id="SENo" name="SENo"&ndash;%&gt;--%>
+                                               <%--&lt;%&ndash;placeholder="津贴类型">&ndash;%&gt;--%>
+                                        <%--<select class="form-control" id="SENo" name="SENo">--%>
+                                            <%--<option ng-repeat="e in allSubsidyEvent" VALUE="{{ e.SENo }}">--%>
+                                                <%--{{ e.SEName }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp--%>
+                                            <%--</option>--%>
+                                        <%--</select>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label for="SLMoney">金额</label>--%>
+                                        <%--<input type="text" class="form-control" id="SLMoney" name="SLMoney"--%>
+                                               <%--placeholder="金额">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label for="SLComment">备注</label>--%>
+                                        <%--<input type="text" class="form-control" id="SLComment" name="SLComment"--%>
+                                               <%--placeholder="备注">--%>
+                                    <%--</div>--%>
+                                    <%--<button type="submit" class="btn btn-default">Send invitation</button>--%>
+                                <%--</form>--%>
+
+
+                                <form class="form-horizontal"
+                                      action="/employee/addsubsidylog" method="post">
+                                    <div class="form-group">
+                                        <label for="SENo" class="col-md-1 control-label">类型</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" id="SENo" name="SENo">
+                                                <option ng-repeat="e in allSubsidyEvent" VALUE="{{ e.SENo }}">
+                                                    {{ e.SEName }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SLMoney" class="col-md-1 control-label">金额</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="SLMoney" name="SLMoney"
+                                                   placeholder="金额">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SLComment" class="col-md-1 control-label">备注</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="SLComment" name="SLComment"
+                                                   placeholder="备注">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="ENo" name="ENo" value="{{ searchEmployee.ENo }}">
+                                    <div class="col-md-1">
+                                        <button type="submit" class="btn btn-default">确认</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> <!-- ./panel -->
+                    </div>
+                </div> <!-- ./添加津贴记录 -->
+
             </div> <!-- ./page-inner -->
         </div> <!-- ./page-wrapper -->
     </div> <!-- ./wrapper -->
@@ -171,8 +312,10 @@
         $scope.currEmployee = JSON.parse('${currEmployee}')[0];
         $scope.searchEmployee = JSON.parse('${searchEmployee}')[0];
         $scope.searchAttendLog = JSON.parse('${searchAttendLog}');
+        $scope.searchSubsidyLog = JSON.parse('${searchSubsidyLog}');
         $scope.searchPayroll = JSON.parse('${searchPayroll}');
         $scope.allEvent = JSON.parse('${allEvent}');
+        $scope.allSubsidyEvent = JSON.parse('${allSubsidyEvent}');
         $scope.rootSideBar = "active-menu";
         $scope.normalSideBar = "";
     });

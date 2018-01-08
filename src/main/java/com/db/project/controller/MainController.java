@@ -55,6 +55,11 @@ public class MainController {
         }
     }
 
+    @RequestMapping("/statistic")
+    public String Statistic() {
+        return "root_statistic";
+    }
+
     @RequestMapping("/idv")
     public String Individual(HttpSession session, ModelMap model) {
         // 判断是否存在session
