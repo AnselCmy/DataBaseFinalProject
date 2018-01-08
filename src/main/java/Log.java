@@ -16,7 +16,7 @@ public class Log {
         int randomInt;
         EmployeeDao dao = new EmployeeDao();
         AttendLogDao attendDao = new AttendLogDao();
-        List<EmployeeEntity> list = dao.query();
+        List<EmployeeEntity> list = dao.opeation(EmployeeDao.Opeation.Query);
         Date date = Date.valueOf("2017-1-1");
         System.out.println(date.toString());
         System.out.println(list.size());
@@ -32,7 +32,7 @@ public class Log {
                     aeNo += String.valueOf(random.nextInt(6));
                     date = Date.valueOf(dateString);
 //                    System.out.println(list.get(ee).geteNo() + " " +  date.toString() + " " + aeNo);  //验证数据
-                    attendDao.add(new AttendLogEntity(list.get(ee).geteNo(), date, aeNo));  //向AttednLog添加记录
+                    attendDao.opeation(AttendLogDao.Opeation.Query, new AttendLogEntity(list.get(ee).geteNo(), date, aeNo));  //向AttednLog添加记录
                 }
             }
             day++;

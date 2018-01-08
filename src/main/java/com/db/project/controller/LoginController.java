@@ -1,12 +1,15 @@
 package com.db.project.controller;
 
-import javax.servlet.http.HttpSession;
-
+import com.db.project.dao.UserDao;
 import com.db.project.entity.UserEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import com.db.project.dao.UserDao;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
