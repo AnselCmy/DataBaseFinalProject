@@ -53,13 +53,13 @@ public class AttendLogDao{
                     list = session.createQuery(hql).list();
                     break;
                 case Add:
-                    session.save(entity);
+                    session.save(entity[0]);
                     break;
                 case Delete:
-                    session.delete(entity);
+                    session.delete(entity[0]);
                     break;
                 case Update:
-                    session.update(entity);
+                    session.update(entity[0]);
                     break;
                 default:
                     break;
@@ -81,8 +81,8 @@ public class AttendLogDao{
         opeation(Opeation.Add, new AttendLogEntity(ENo, new Date(System.currentTimeMillis()), AENo));
     }
 
-    public void deleteLog(String ENo, String ALDate, String AEName) {
-
+    public void deleteLog(String ENo, String ALDate, String AENo) {
+        opeation(Opeation.Delete, new AttendLogEntity(ENo, Date.valueOf(ALDate), AENo));
     }
 
     public AttendLogEntity getById(int id) {    //查
@@ -125,5 +125,10 @@ public class AttendLogDao{
         }
         session.close();
         return rstList;
+    }
+
+    public static void main(String[] args) {
+        AttendLogDao attendLogDao = new AttendLogDao();
+        attendLogDao.addLog("2000000041", "00");
     }
 }

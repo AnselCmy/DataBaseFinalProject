@@ -1,5 +1,6 @@
 package com.db.project.dao;
 
+import com.db.project.entity.VCountPayrollEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -8,7 +9,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataAnalysis {
     private Session session = null;
@@ -27,7 +30,7 @@ public class DataAnalysis {
         sf = conf.buildSessionFactory();
     }
 
-    public List<String> Siri(Say word, String... department){
+    public List<HashMap<String, String>> Siri(Say word, String... department){
         // 实例化Session
         try {
             session = sf.openSession();
@@ -35,13 +38,13 @@ public class DataAnalysis {
             String hql = "";
             switch (word) {
                 case Avg:
-                    hql = "select avg(p.pPayroll) from PayrollEntity p, EmployeeEntity e where e.eNo = p.eNo group by (e.dNo)";
+                    hql = "from VCountPayrollEntity p";
                     break;
                 case Max:
-                    hql = "select max(p.pPayroll) from PayrollEntity p group by (p.pDate)";
+                    hql = "from VCountPayrollEntity p";
                     break;
                 case Min:
-                    hql = "select min(p.pPayroll) from PayrollEntity p group by (p.pDate)";
+                    hql = "from VCountPayrollEntity p";
                     break;
                 default:
                     System.out.println("please input: Min, Max, Avg + (Dno)");
@@ -49,10 +52,16 @@ public class DataAnalysis {
             }
             Query query = session.createQuery(hql);
             tx.commit();
-            List<String> rst = new ArrayList<String>();
-            List queryList = query.list();
+            List<HashMap<String, String>> rst = new ArrayList<HashMap<String, String>>();
+            List<VCountPayrollEntity> queryList = query.list();
+            HashMap<String, String> tempMap;
             for(int i=0; i<queryList.size(); i++) {
-                rst.add(String.valueOf(queryList.get(i)));
+                tempMap = new HashMap<String, String>();
+                tempMap.put("DName", queryList.get(i).getdNo());
+                tempMap.put("Payroll", String.valueOf(queryList.get(i).getPayroll()));
+                tempMap.put("Max", String.valueOf(queryList.get(i).getMax()));
+                tempMap.put("Min", String.valueOf(queryList.get(i).getMin()));
+                rst.add(tempMap);
             }
             return rst;
         } catch (HibernateException e) {
