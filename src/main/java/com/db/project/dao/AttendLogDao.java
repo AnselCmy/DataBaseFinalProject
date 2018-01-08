@@ -42,10 +42,10 @@ public class AttendLogDao{
      * */
     public List<AttendLogEntity> opeation(AttendLogDao.Opeation p, AttendLogEntity... entity) {
         List<AttendLogEntity> list = null;
+        String hql;
         try {
             //实例化Session
             session = sf.openSession();
-            String hql;
             tx = session.beginTransaction();
             switch (p) {
                 case Query:
@@ -75,6 +75,20 @@ public class AttendLogDao{
             }
         }
         return list;
+    }
+
+    public void add(AttendLogEntity log) {   //增
+        try {
+            session = sf.openSession();
+            tx = session.beginTransaction();
+            session.save(log);
+            tx.commit();
+        } catch (HibernateException e) {
+            tx.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            session.close();
+        }
     }
 
     public void addLog(String ENo, String AENo) {
