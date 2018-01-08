@@ -14,7 +14,7 @@
                 <a class="{{ rootSideBar }}" href="/main"><i class="fa fa-dashboard"></i> 管理面板</a>
             </li>
             <li>
-                <a class="{{ normalSideBar }}" ng-href="/employee/{{ currEmployee.ENo }}"><i class="fa fa-desktop"></i> 个人面板</a>
+                <a class="{{ normalSideBar }}" ng-href="/main/idv"><i class="fa fa-desktop"></i> 个人面板</a>
             </li>
             <li>
                 <a href="ui-elements.html"><i class="fa fa-desktop"></i> UI Elements</a>

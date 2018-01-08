@@ -20,6 +20,7 @@
     <link href="/assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
     <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/lib/css/font-awesome.css" rel="stylesheet" />
     <!-- Morris Chart Styles-->
     <link href="/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- Custom Styles-->
@@ -33,17 +34,17 @@
 <div ng-app="payroll_app" ng-controller="payroll_controller">
     <div id="wrapper">
         <jsp:include page="navbar_top.jsp" flush="true" />
-        <jsp:include page="navbar_side.jsp" flush="true" />
+        <jsp:include page="normal_navbar_side.jsp" flush="true" />
         <div id="page-wrapper">
             <div class="header">
                 <h1 class="page-header">
-                    员工工资详情 <small>{{ searchEmployee.EName }}</small>
+                    员工工资详情 <small>{{ currEmployee.EName }}</small>
                 </h1>
                 <ol class="breadcrumb">
-                <li><a href="#">{{ searchEmployee.ENo }}</a></li>
-                <li><a href="#">{{ searchEmployee.EName }}</a></li>
-                <li><a href="#">{{ searchEmployee.DName }}</a></li>
-                <li><a href="#">{{ searchEmployee.PosName }}</a></li>
+                    <li><a href="#">{{ currEmployee.ENo }}</a></li>
+                    <li><a href="#">{{ currEmployee.EName }}</a></li>
+                    <li><a href="#">{{ currEmployee.DName }}</a></li>
+                    <li><a href="#">{{ currEmployee.PosName }}</a></li>
                 </ol>
             </div>
             <div id="page-inner">
@@ -62,7 +63,6 @@
                                             <th>日期</th>
                                             <th>事件</th>
                                             <th>奖罚金额</th>
-                                            <th>操作</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -70,29 +70,24 @@
                                             <td>{{ log.ALDate }}</td>
                                             <td>{{ log.AEName }}</td>
                                             <td>{{ log.AEMoney }}</td>
-                                            <td>
-                                                <a class="btn btn-danger"
-                                                   ng-href="/employee/deleteattendlog/{{ searchEmployee.ENo }}/{{ log.ALDate }}/{{ log.AENo }}"
-                                                   role="button">删除</a>
-                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div>
-                                    <form action="/employee/addattendlog" method="post" class="form-inline">
-                                        <fieldset class="form-group">
-                                            <label for="AENo">添加记录 &nbsp</label>
-                                            <select class="form-control" id="AENo" name="AENo">
-                                                <option ng-repeat="e in allEvent" VALUE="{{ e.AENo }}">
-                                                    {{ e.AEName }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                </option>
-                                            </select>
-                                        </fieldset>
-                                        <input type="hidden" id="ENo" name="ENo" value="{{ searchEmployee.ENo }}">
-                                        <button type="submit" class="button btn btn-success btn-large">确认</button>
-                                    </form>
-                                </div>
+                                <%--<div>--%>
+                                    <%--<form action="/employee/addattendlog" method="post" class="form-inline">--%>
+                                        <%--<fieldset class="form-group">--%>
+                                            <%--<label for="AENo">添加记录 &nbsp</label>--%>
+                                            <%--<select class="form-control" id="AENo" name="AENo">--%>
+                                                <%--<option ng-repeat="e in allEvent" VALUE="{{ e.AENo }}">--%>
+                                                    <%--{{ e.AEName }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp--%>
+                                                <%--</option>--%>
+                                            <%--</select>--%>
+                                        <%--</fieldset>--%>
+                                        <%--<input type="hidden" id="ENo" name="ENo" value="{{ searchEmployee.ENo }}">--%>
+                                        <%--<button type="submit" class="button btn btn-success btn-large">确认</button>--%>
+                                    <%--</form>--%>
+                                <%--</div>--%>
                             </div>
                         </div> <!-- ./panel -->
                     </div>
@@ -169,12 +164,12 @@
     var app = angular.module("payroll_app", []);
     app.controller("payroll_controller", function($scope){
         $scope.currEmployee = JSON.parse('${currEmployee}')[0];
-        $scope.searchEmployee = JSON.parse('${searchEmployee}')[0];
+        <%--$scope.searchEmployee = JSON.parse('${searchEmployee}')[0];--%>
         $scope.searchAttendLog = JSON.parse('${searchAttendLog}');
         $scope.searchPayroll = JSON.parse('${searchPayroll}');
-        $scope.allEvent = JSON.parse('${allEvent}');
-        $scope.rootSideBar = "active-menu";
-        $scope.normalSideBar = "";
+        <%--$scope.allEvent = JSON.parse('${allEvent}');--%>
+        $scope.rootSideBar = "";
+        $scope.normalSideBar = "active-menu";
     });
 
     Morris.Line({
