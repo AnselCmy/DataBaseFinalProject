@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -198,7 +198,8 @@
                                             <td>{{ log.SLComment }}</td>
                                             <td>
                                                 <a class="btn btn-danger"
-                                                   ng-href="/employee/deletesubsidylog/{{ searchEmployee.ENo }}/{{ log.SLDate }}/{{ log.SENo }}"
+                                                   ng-href="/employee/deletesubsidylog/{{ searchEmployee.ENo }}
+                                                            /{{ log.SLDate }}/{{ log.SENo }}/{{ log.SLMoney }}/{{ log.SLComment }}"
                                                    role="button">删除</a>
                                             </td>
                                         </tr>
@@ -246,7 +247,7 @@
 
 
                                 <form class="form-horizontal"
-                                      action="/employee/addsubsidylog" method="post">
+                                      action="/employee/addsubsidylog" method="post" Ectype="text/plain">
                                     <div class="form-group">
                                         <label for="SENo" class="col-md-1 control-label">类型</label>
                                         <div class="col-md-10">

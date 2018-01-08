@@ -1,13 +1,16 @@
 package com.db.project.dao;
 
+import com.db.project.entity.SubsidyLogEntity;
 import com.db.project.entity.VAttendLog2Entity;
 import com.db.project.entity.VSubsidyLogEntity;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +34,7 @@ public class SubsidyLogDao {
     public List<HashMap<String, String>> getSubsidyLogWithMapByENo(String ENo) {
         List<VSubsidyLogEntity> queryList;
         session = sf.openSession();
-        String hql = "from VSubsidyLogEntity v where v.eNo = :ENo";
+        String hql = "from VSubsidyLogEntity v where v.eNo = :ENo order by v.slDate";
         Query query = session.createQuery(hql);
         query.setParameter("ENo", ENo);
         queryList = query.list();
@@ -49,5 +52,53 @@ public class SubsidyLogDao {
         }
         session.close();
         return rstList;
+    }
+
+    /**
+     * SubsidyLog表操作
+     * */
+    public List<SubsidyLogEntity> opeation(SubsidyDao.Opeation p, SubsidyLogEntity... entity) {
+        List<SubsidyLogEntity> list = null;
+        String hql;
+        try {
+            //实例化Session
+            session = sf.openSession();
+            tx = session.beginTransaction();
+            switch (p) {
+                case Query:
+                    hql = "from SubsidyLogEntity ";
+                    list = session.createQuery(hql).list();
+                    break;
+                case Add:
+                    session.save(entity[0]);
+                    break;
+                case Delete:
+                    session.delete(entity[0]);
+                    break;
+                case Update:
+                    session.update(entity[0]);
+                    break;
+                default:
+                    break;
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            tx.rollback();
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return list;
+    }
+
+    public void addLog(String ENo, String SLMoney, String SENo, String SLComment) {
+        opeation(SubsidyDao.Opeation.Add, new SubsidyLogEntity(ENo, new Date(System.currentTimeMillis()), Float.valueOf(SLMoney), SENo, SLComment));
+    }
+
+    public void deleteLog(String ENo, String SLDate, String SLMoney, String SENo, String SLComment) {
+        opeation(SubsidyDao.Opeation.Delete, new SubsidyLogEntity(ENo, Date.valueOf(SLDate), Float.valueOf(SLMoney), SENo, SLComment));
     }
 }

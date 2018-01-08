@@ -30,6 +30,7 @@ public class MainController {
             AttendLogDao attendLogDao = new AttendLogDao();
             PayrollDao payrollDao = new PayrollDao();
             AttendEventDao attendEventDao = new AttendEventDao();
+            SubsidyLogDao subsidyLogDao = new SubsidyLogDao();
             HashMap<String, String> currEmployee = employeeDao.getEntityWithMapByENo(currENo);
             model.addAttribute("currEmployee", JSONArray.fromObject(currEmployee).toString());
             // 根据用户的权限的不同有不同的页面
@@ -40,24 +41,35 @@ public class MainController {
                 return "root_mng_board";
             }
             else {
-                // 当前被查询者的相关信息
-                HashMap<String, String> searchEmployee = employeeDao.getEntityWithMapByENo(currENo);
-                // 当前被查询者的考勤信息
-                List<HashMap<String, String>> searchAttendLog = attendLogDao.getAttendLogWithMapByENo(currENo);
-                // 当前被查询者的工资信息
-                List<HashMap<String, String>> searchPayroll = payrollDao.getPayrollWithMapByENo(currENo);
-                // 考勤事件的详细信息
-                List<HashMap<String, String>> allEvent = attendEventDao.getAllEventWithMap();
-                model.addAttribute("searchAttendLog", JSONArray.fromObject(searchAttendLog).toString());
-                model.addAttribute("searchPayroll", JSONArray.fromObject(searchPayroll).toString());
-                return "normal_idv_board";
+//                // 当前被查询者的相关信息
+//                HashMap<String, String> searchEmployee = employeeDao.getEntityWithMapByENo(currENo);
+//                // 当前被查询者的考勤信息
+//                List<HashMap<String, String>> searchAttendLog = attendLogDao.getAttendLogWithMapByENo(currENo);
+//                // 当前被查询者的工资信息
+//                List<HashMap<String, String>> searchPayroll = payrollDao.getPayrollWithMapByENo(currENo);
+//                // 考勤事件的详细信息
+//                List<HashMap<String, String>> allEvent = attendEventDao.getAllEventWithMap();
+//                // 当前登陆者的津贴信息
+//                List<HashMap<String, String>> searchSubsidyLog = subsidyLogDao.getSubsidyLogWithMapByENo(currENo);
+//                model.addAttribute("searchAttendLog", JSONArray.fromObject(searchAttendLog).toString());
+//                model.addAttribute("searchSubsidyLog", JSONArray.fromObject(searchSubsidyLog).toString());
+//                model.addAttribute("searchPayroll", JSONArray.fromObject(searchPayroll).toString());
+//                return "normal_idv_board";
+                return "redirect:/main/idv";
             }
         }
     }
 
-    @RequestMapping("/statistic")
-    public String Statistic() {
-        return "root_statistic";
+    @RequestMapping("/dep")
+    public String Statistic(ModelMap model, HttpSession session) {
+        String currENo = String.valueOf(session.getAttribute("currENo"));
+        DataAnalysis dataAnalysis = new DataAnalysis();
+        EmployeeDao employeeDao = new EmployeeDao();
+        HashMap<String, String> currEmployee = employeeDao.getEntityWithMapByENo(currENo);
+        List<HashMap<String, String>> depDataByYear = dataAnalysis.Siri(DataAnalysis.Say.Avg);
+        model.addAttribute("currEmployee", JSONArray.fromObject(currEmployee).toString());
+        model.addAttribute("depDataByYear", JSONArray.fromObject(depDataByYear).toString());
+        return "root_dep_board";
     }
 
     @RequestMapping("/idv")
@@ -73,14 +85,18 @@ public class MainController {
         AttendLogDao attendLogDao = new AttendLogDao();
         PayrollDao payrollDao = new PayrollDao();
         UserDao userDao = new UserDao();
+        SubsidyLogDao subsidyLogDao = new SubsidyLogDao();
         // 获取当前登陆者的信息
         HashMap<String, String> currEmployee = employeeDao.getEntityWithMapByENo(currENo);
         // 当前登陆者的考勤信息
         List<HashMap<String, String>> searchAttendLog = attendLogDao.getAttendLogWithMapByENo(currENo);
         // 当前登陆者的工资信息
         List<HashMap<String, String>> searchPayroll = payrollDao.getPayrollWithMapByENo(currENo);
+        // 当前登陆者的津贴信息
+        List<HashMap<String, String>> searchSubsidyLog = subsidyLogDao.getSubsidyLogWithMapByENo(currENo);
         model.addAttribute("currEmployee", JSONArray.fromObject(currEmployee).toString());
         model.addAttribute("searchAttendLog", JSONArray.fromObject(searchAttendLog).toString());
+        model.addAttribute("searchSubsidyLog", JSONArray.fromObject(searchSubsidyLog).toString());
         model.addAttribute("searchPayroll", JSONArray.fromObject(searchPayroll).toString());
         // 根据用户的权限的不同有不同的页面
         String level = userDao.getLevelByENo(currENo);
