@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,4 +68,13 @@ public class EmployeeController {
 //        return "redirect:/employee/"+ENo;
         return AENo + ENo;
     }
+    @RequestMapping("/deleteattendlog/{ENo}/{ALDate}/{AENo}")
+    @ResponseBody
+    public String DeleteAttendLog(ModelMap model, HttpSession session,
+                                    @PathVariable String ENo,
+                                    @PathVariable String ALDate,
+                                    @PathVariable String AENo) {
+        return ENo+"/"+ALDate+"/"+AENo;
+    }
+
 }

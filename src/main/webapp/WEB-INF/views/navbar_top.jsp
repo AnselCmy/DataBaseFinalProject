@@ -7,7 +7,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html"><strong><i class="icon fa fa-plane"></i> 工资管理系统</strong></a>
+        <i class="fa fa-cc-visa" aria-hidden="true"></i>
+        <a class="navbar-brand" href="index.html"><strong><i class="fa fa-cc-visa" aria-hidden="true"></i> 工资管理系统</strong></a>
 
         <div id="sideNav" href="">
             <i class="fa fa-bars icon"></i>

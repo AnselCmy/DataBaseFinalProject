@@ -1,6 +1,7 @@
 package com.db.project.dao;
 
 import com.db.project.entity.AttendLogEntity;
+import com.db.project.entity.VAttendLog2Entity;
 import com.db.project.entity.VAttendLogEntity;
 import com.db.project.entity.VEmployeeEntity;
 import org.hibernate.HibernateException;
@@ -120,18 +121,19 @@ public class AttendLogDao{
     通过ENo查询某一个人的考勤记录
      */
     public List<HashMap<String, String>> getAttendLogWithMapByENo(String ENo) {
-        List<VAttendLogEntity> queryList;
+        List<VAttendLog2Entity> queryList;
         session = sf.openSession();
-        String hql = "from VAttendLogEntity v where v.eNo = :ENo";
+        String hql = "from VAttendLog2Entity v where v.eNo = :ENo";
         Query query = session.createQuery(hql);
         query.setParameter("ENo", ENo);
         queryList = query.list();
         HashMap<String, String> temp;
         ArrayList<HashMap<String, String>> rstList = new ArrayList<HashMap<String, String>>();
-        for(VAttendLogEntity entity: queryList) {
+        for(VAttendLog2Entity entity: queryList) {
             temp = new HashMap<String, String>();
             temp.put("ENo", entity.geteNo());
             temp.put("ALDate", entity.getAlDate().toString());
+            temp.put("AENo", entity.getAeNo());
             temp.put("AEName", entity.getAeName());
             temp.put("AEMoney", String.valueOf((int)entity.getAeMoney()));
             rstList.add(temp);
