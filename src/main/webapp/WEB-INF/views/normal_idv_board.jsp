@@ -48,93 +48,7 @@
                 </ol>
             </div>
             <div id="page-inner">
-                <!-- 考勤记录 -->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                考勤记录
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>日期</th>
-                                            <th>事件</th>
-                                            <th>奖罚金额</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="log in searchAttendLog">
-                                            <td>{{ log.ALDate }}</td>
-                                            <td>{{ log.AEName }}</td>
-                                            <td>{{ log.AEMoney }}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <%--<div>--%>
-                                    <%--<form action="/employee/addattendlog" method="post" class="form-inline">--%>
-                                        <%--<fieldset class="form-group">--%>
-                                            <%--<label for="AENo">添加记录 &nbsp</label>--%>
-                                            <%--<select class="form-control" id="AENo" name="AENo">--%>
-                                                <%--<option ng-repeat="e in allEvent" VALUE="{{ e.AENo }}">--%>
-                                                    <%--{{ e.AEName }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp--%>
-                                                <%--</option>--%>
-                                            <%--</select>--%>
-                                        <%--</fieldset>--%>
-                                        <%--<input type="hidden" id="ENo" name="ENo" value="{{ searchEmployee.ENo }}">--%>
-                                        <%--<button type="submit" class="button btn btn-success btn-large">确认</button>--%>
-                                    <%--</form>--%>
-                                <%--</div>--%>
-                            </div>
-                        </div> <!-- ./panel -->
-                    </div>
-                </div> <!-- ./row -->
-                <!-- /考勤记录 -->
-
-                <!-- 工资记录 -->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                工资记录
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                工资走势
-                                            </div>
-                                            <div class="panel-body">
-                                                <div id="morris-line-chart"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>日期</th>
-                                            <th>工资</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="pay in searchPayroll">
-                                            <td>{{ pay.PDate }}</td>
-                                            <td>{{ pay.PPayroll }}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- ./row -->
-                <!-- /工资记录 -->
+                <jsp:include page="idv_inner_page.jsp" flush="true" />
             </div> <!-- ./page-inner -->
         </div> <!-- ./page-wrapper -->
     </div> <!-- ./wrapper -->
@@ -166,6 +80,7 @@
         $scope.currEmployee = JSON.parse('${currEmployee}')[0];
         <%--$scope.searchEmployee = JSON.parse('${searchEmployee}')[0];--%>
         $scope.searchAttendLog = JSON.parse('${searchAttendLog}');
+        $scope.searchSubsidyLog = JSON.parse('${searchSubsidyLog}');
         $scope.searchPayroll = JSON.parse('${searchPayroll}');
         <%--$scope.allEvent = JSON.parse('${allEvent}');--%>
         $scope.rootSideBar = "";

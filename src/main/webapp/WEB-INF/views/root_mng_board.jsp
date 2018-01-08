@@ -371,8 +371,9 @@
         app.controller("payroll_controller", function($scope){
             $scope.currEmployee = (JSON.parse('${currEmployee}'))[0];
             $scope.allEmployee = JSON.parse('${allEmployee}');
-            $scope.rootSideBar = "active-menu";
-            $scope.normalSideBar = "";
+            $scope.mngSideBar = "active-menu";
+            $scope.idvSideBar = "";
+            $scope.depSideBar = "";
         });
     </script>
 </body>
