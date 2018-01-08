@@ -57,7 +57,7 @@ public class DataAnalysis {
         }
     }
 
-    public List<HashMap<String, String>> CountPayrollByMonth() {
+    public List<HashMap<String, List<HashMap<String, String>>>> CountPayrollByMonth() {
         // 实例化Session
         try {
             session = sf.openSession();
@@ -65,17 +65,28 @@ public class DataAnalysis {
             String hql = "from VCountPayrollByMonthEntity p";
             Query query = session.createQuery(hql);
             tx.commit();
-            List<HashMap<String, String>> rst = new ArrayList<HashMap<String, String>>();
+            List<HashMap<String, List<HashMap<String, String>>>> rst = new ArrayList<HashMap<String, List<HashMap<String, String>>>>();
             List<VCountPayrollByMonthEntity> queryList = query.list();
-            HashMap<String, String> tempMap;
+            HashMap<String, String> inside;
+            List<HashMap<String, String>> myList = new ArrayList<HashMap<String, String>>();
             for(int i=0; i<queryList.size(); i++) {
-                tempMap = new HashMap<String, String>();
-                tempMap.put("DName", queryList.get(i).getdName());
-                tempMap.put("Payroll", String.valueOf(queryList.get(i).getPayroll()));
-                tempMap.put("Max", String.valueOf(queryList.get(i).getMax()));
-                tempMap.put("Min", String.valueOf(queryList.get(i).getMin()));
-                tempMap.put("Date", String.valueOf(queryList.get(i).getDate()));
-                rst.add(tempMap);
+                inside = new HashMap<String, String>();
+                inside.put("DName", queryList.get(i).getdName());
+                inside.put("Payroll", String.valueOf(queryList.get(i).getPayroll()));
+                inside.put("Max", String.valueOf(queryList.get(i).getMax()));
+                inside.put("Min", String.valueOf(queryList.get(i).getMin()));
+                myList.add(inside);
+            }
+            ArrayList<HashMap<String, String>> addList;
+            HashMap<String, List<HashMap<String, String>>> addHash;
+            for(int i=0; i<12; i++) {
+                addList = new ArrayList<HashMap<String, String>>();
+                for(int j=0; j<10; j++) {
+                    addList.add(myList.get(j*12 + i));
+                }
+                addHash = new HashMap<String, List<HashMap<String, String>>>();
+                addHash.put(String.valueOf(i), addList);
+                rst.add(addHash);
             }
             return rst;
         } catch (HibernateException e) {
