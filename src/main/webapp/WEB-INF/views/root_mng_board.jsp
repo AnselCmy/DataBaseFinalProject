@@ -44,76 +44,76 @@
 
                 <!-- /. ROW  -->
 	
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>44,023</h3>
-								<small>Daily Visits</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-eye fa-5x red"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>32,850</h3>
-								<small>Sales</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-shopping-cart fa-5x blue"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>56,150</h3>
-								<small>Comments</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-comments fa-5x green"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>89,645</h3>
-								<small>Daily Profits</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-user fa-5x yellow"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-				   
-                </div>
+                <%--<div class="row">--%>
+                    <%--<div class="col-md-3 col-sm-12 col-xs-12">--%>
+					<%--<div class="board">--%>
+                        <%--<div class="panel panel-primary">--%>
+						<%--<div class="number">--%>
+							<%--<h3>--%>
+								<%--<h3>44,023</h3>--%>
+								<%--<small>Daily Visits</small>--%>
+							<%--</h3> --%>
+						<%--</div>--%>
+						<%--<div class="icon">--%>
+						   <%--<i class="fa fa-eye fa-5x red"></i>--%>
+						<%--</div>--%>
+		 <%----%>
+                        <%--</div>--%>
+						<%--</div>--%>
+                    <%--</div>--%>
+					<%----%>
+					       <%--<div class="col-md-3 col-sm-12 col-xs-12">--%>
+					<%--<div class="board">--%>
+                        <%--<div class="panel panel-primary">--%>
+						<%--<div class="number">--%>
+							<%--<h3>--%>
+								<%--<h3>32,850</h3>--%>
+								<%--<small>Sales</small>--%>
+							<%--</h3> --%>
+						<%--</div>--%>
+						<%--<div class="icon">--%>
+						   <%--<i class="fa fa-shopping-cart fa-5x blue"></i>--%>
+						<%--</div>--%>
+		 <%----%>
+                        <%--</div>--%>
+						<%--</div>--%>
+                    <%--</div>--%>
+					<%----%>
+					       <%--<div class="col-md-3 col-sm-12 col-xs-12">--%>
+					<%--<div class="board">--%>
+                        <%--<div class="panel panel-primary">--%>
+						<%--<div class="number">--%>
+							<%--<h3>--%>
+								<%--<h3>56,150</h3>--%>
+								<%--<small>Comments</small>--%>
+							<%--</h3> --%>
+						<%--</div>--%>
+						<%--<div class="icon">--%>
+						   <%--<i class="fa fa-comments fa-5x green"></i>--%>
+						<%--</div>--%>
+		 <%----%>
+                        <%--</div>--%>
+						<%--</div>--%>
+                    <%--</div>--%>
+					<%----%>
+					       <%--<div class="col-md-3 col-sm-12 col-xs-12">--%>
+					<%--<div class="board">--%>
+                        <%--<div class="panel panel-primary">--%>
+						<%--<div class="number">--%>
+							<%--<h3>--%>
+								<%--<h3>89,645</h3>--%>
+								<%--<small>Daily Profits</small>--%>
+							<%--</h3> --%>
+						<%--</div>--%>
+						<%--<div class="icon">--%>
+						   <%--<i class="fa fa-user fa-5x yellow"></i>--%>
+						<%--</div>--%>
+		 <%----%>
+                        <%--</div>--%>
+						<%--</div>--%>
+                    <%--</div>--%>
+				   <%----%>
+                <%--</div>--%>
 				     <%--<div class="row">--%>
                         <%--<div class="col-sm-6 col-xs-12">  --%>
                             <%--<div class="panel panel-default chartJs">--%>
@@ -141,150 +141,151 @@
                         <%--</div>--%>
                     <%--</div>--%>
 				
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Profit</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Sales</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Customers</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>No. of Visits</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-        
-			<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
-		
-				<div class="row">
-				    <div class="col-md-5">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Line Chart
-                            </div>
-                        <div class="panel-body">
-                            <div id="morris-line-chart"></div>
-                        </div>
-                    </div>
-                </div>
-					
-						<div class="col-md-7">
-					<div class="panel panel-default">
-					<div class="panel-heading">
-                                Bar Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
-                            </div>
-						
-					</div>  
-					</div>
-					
-				</div> 
-			 
-				
-				
-                <div class="row">
-                    <div class="col-md-9 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">                            
-							<div class="panel-heading">
-							Area Chart
-						</div>
-						<div class="panel-body">
-							<div id="morris-area-chart"></div>
-						</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Donut Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-				<div class="row">
-				<div class="col-md-12">
-				
-					</div>		
-				</div> 	
-                <!-- /. ROW  -->
-
-	   
-				
-				
-				
-                <div class="row">
-                    <%--<div class="col-md-4 col-sm-12 col-xs-12">--%>
+		<%--<div class="row">--%>
+			<%--<div class="col-xs-6 col-md-3">--%>
+				<%--<div class="panel panel-default">--%>
+					<%--<div class="panel-body easypiechart-panel">--%>
+						<%--<h4>Profit</h4>--%>
+						<%--<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+			<%--<div class="col-xs-6 col-md-3">--%>
+				<%--<div class="panel panel-default">--%>
+					<%--<div class="panel-body easypiechart-panel">--%>
+						<%--<h4>Sales</h4>--%>
+						<%--<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+			<%--<div class="col-xs-6 col-md-3">--%>
+				<%--<div class="panel panel-default">--%>
+					<%--<div class="panel-body easypiechart-panel">--%>
+						<%--<h4>Customers</h4>--%>
+						<%--<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+			<%--<div class="col-xs-6 col-md-3">--%>
+				<%--<div class="panel panel-default">--%>
+					<%--<div class="panel-body easypiechart-panel">--%>
+						<%--<h4>No. of Visits</h4>--%>
+						<%--<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+		<%--</div><!--/.row-->--%>
+        <%----%>
+			<%--<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>--%>
+		<%----%>
+				<%--<div class="row">--%>
+				    <%--<div class="col-md-5">--%>
                         <%--<div class="panel panel-default">--%>
                             <%--<div class="panel-heading">--%>
-                                <%--Tasks Panel--%>
+                                <%--Line Chart--%>
+                            <%--</div>--%>
+                        <%--<div class="panel-body">--%>
+                            <%--<div id="morris-line-chart"></div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+					<%----%>
+						<%--<div class="col-md-7">--%>
+					<%--<div class="panel panel-default">--%>
+					<%--<div class="panel-heading">--%>
+                                <%--Bar Chart Example--%>
                             <%--</div>--%>
                             <%--<div class="panel-body">--%>
-                                <%--<div class="list-group">--%>
-
-                                    <%--<a href="#" class="list-group-item">--%>
-                                        <%--<span class="badge">7 minutes ago</span>--%>
-                                        <%--<i class="fa fa-fw fa-comment"></i> Commented on a post--%>
-                                    <%--</a>--%>
-                                    <%--<a href="#" class="list-group-item">--%>
-                                        <%--<span class="badge">16 minutes ago</span>--%>
-                                        <%--<i class="fa fa-fw fa-truck"></i> Order 392 shipped--%>
-                                    <%--</a>--%>
-                                    <%--<a href="#" class="list-group-item">--%>
-                                        <%--<span class="badge">36 minutes ago</span>--%>
-                                        <%--<i class="fa fa-fw fa-globe"></i> Invoice 653 has paid--%>
-                                    <%--</a>--%>
-                                    <%--<a href="#" class="list-group-item">--%>
-                                        <%--<span class="badge">1 hour ago</span>--%>
-                                        <%--<i class="fa fa-fw fa-user"></i> A new user has been added--%>
-                                    <%--</a>--%>
-                                    <%--<a href="#" class="list-group-item">--%>
-                                        <%--<span class="badge">1.23 hour ago</span>--%>
-                                        <%--<i class="fa fa-fw fa-user"></i> A new user has added--%>
-                                    <%--</a>--%>
-                                    <%--<a href="#" class="list-group-item">--%>
-                                        <%--<span class="badge">yesterday</span>--%>
-                                        <%--<i class="fa fa-fw fa-globe"></i> Saved the world--%>
-                                    <%--</a>--%>
-                                <%--</div>--%>
-                                <%--<div class="text-right">--%>
-                                    <%--<a href="#">More Tasks <i class="fa fa-arrow-circle-right"></i></a>--%>
-                                <%--</div>--%>
+                                <%--<div id="morris-bar-chart"></div>--%>
+                            <%--</div>--%>
+						<%----%>
+					<%--</div>  --%>
+					<%--</div>--%>
+					<%----%>
+				<%--</div> --%>
+			 <%----%>
+				<%----%>
+				<%----%>
+                <%--<div class="row">--%>
+                    <%--<div class="col-md-9 col-sm-12 col-xs-12">--%>
+                        <%--<div class="panel panel-default">                            --%>
+							<%--<div class="panel-heading">--%>
+							<%--Area Chart--%>
+						<%--</div>--%>
+						<%--<div class="panel-body">--%>
+							<%--<div id="morris-area-chart"></div>--%>
+						<%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="col-md-3 col-sm-12 col-xs-12">--%>
+                        <%--<div class="panel panel-default">--%>
+                            <%--<div class="panel-heading">--%>
+                                <%--Donut Chart Example--%>
+                            <%--</div>--%>
+                            <%--<div class="panel-body">--%>
+                                <%--<div id="morris-donut-chart"></div>--%>
                             <%--</div>--%>
                         <%--</div>--%>
-
                     <%--</div>--%>
+
+                <%--</div>--%>
+				<%--<div class="row">--%>
+				<%--<div class="col-md-12">--%>
+				<%----%>
+					<%--</div>		--%>
+				<%--</div> 	--%>
+                <!-- /. ROW  -->
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                搜索
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal"
+                                      action="/employee/" method="post" Ectype="text/plain">
+                                    <div class="form-group">
+                                        <label for="dep" class="col-md-1 control-label">部门</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" ng-model="depChosen" id="dep" name="dep"
+                                                    ng-options="d.DName for d in allDepartment"
+                                                    ng-change="changeDep(depChosen.DName)">
+                                            </select>
+                                        </div>
+                                        <%--{{ count }}--%>
+                                        <%--{{ depChosen.DName }}--%>
+                                        <%--{{ selectEmployee }}--%>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ENo" class="col-md-1 control-label">员工</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" ng-model="employeeChosen" id="ENo" name="ENo"
+                                                    ng-options="e.EName for e in selectEmployee">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <%--{{ depChosen }}--%>
+                                    <%--{{ depChosen.DName }}--%>
+                                    <%--{{ getENameByDName(depChosen.DName) }}--%>
+                                    <%--{{ test }}--%>
+                                    <div class="col-md-1">
+                                        <a ng-href="/employee/{{ employeeChosen.ENo }}" class="btn btn-default">确认</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -371,9 +372,25 @@
         app.controller("payroll_controller", function($scope){
             $scope.currEmployee = (JSON.parse('${currEmployee}'))[0];
             $scope.allEmployee = JSON.parse('${allEmployee}');
+            $scope.allDepartment = JSON.parse('${allDepartment}');
+            $scope.depChosen = $scope.allDepartment[0];
+            $scope.selectEmployee = [];
             $scope.mngSideBar = "active-menu";
             $scope.idvSideBar = "";
             $scope.depSideBar = "";
+            $scope.count = 0;
+
+            $scope.changeDep = function(DName) {
+                $scope.selectEmployee = [];
+                // alert(DName);
+                for(var i=0; i<$scope.allEmployee.length; i++) {
+                    if($scope.allEmployee[i]["DName"] === DName) {
+                        $scope.selectEmployee.push($scope.allEmployee[i]);
+                    }
+                    // alert($scope.allEmployee[i]["DName"], DName)
+                }
+                // $scope.selectEmployee = $scope.allEmployee;
+            };
         });
     </script>
 </body>

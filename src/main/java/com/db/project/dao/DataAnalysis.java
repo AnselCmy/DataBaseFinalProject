@@ -57,7 +57,7 @@ public class DataAnalysis {
         }
     }
 
-    public List<HashMap<String, List<HashMap<String, String>>>> CountPayrollByMonth() {
+    public HashMap<String, List<HashMap<String, String>>> CountPayrollByMonth() {
         // 实例化Session
         try {
             session = sf.openSession();
@@ -78,17 +78,17 @@ public class DataAnalysis {
                 myList.add(inside);
             }
             ArrayList<HashMap<String, String>> addList;
-            HashMap<String, List<HashMap<String, String>>> addHash;
+            HashMap<String, List<HashMap<String, String>>> addHash = new HashMap<String, List<HashMap<String, String>>>();;
             for(int i=0; i<12; i++) {
                 addList = new ArrayList<HashMap<String, String>>();
                 for(int j=0; j<10; j++) {
                     addList.add(myList.get(j*12 + i));
                 }
-                addHash = new HashMap<String, List<HashMap<String, String>>>();
-                addHash.put(String.valueOf(i), addList);
-                rst.add(addHash);
+//                addHash = new HashMap<String, List<HashMap<String, String>>>();
+                addHash.put(String.valueOf(i+1), addList);
+//                rst.add(addHash);
             }
-            return rst;
+            return addHash;
         } catch (HibernateException e) {
             tx.rollback();
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class DataAnalysis {
     }
 
     public static void main(String[] args) {
-        System.out.println(new DataAnalysis().CountPayrollByMonth());
+        System.out.println(new DataAnalysis().CountPayrollByMonth().get("2"));
     }
 
 }

@@ -8,6 +8,7 @@ import com.db.project.dao.*;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,6 +28,7 @@ public class MainController {
             return "redirect:/login/submit/normal";
         }
         else {
+            DepartmentDao departmentDao = new DepartmentDao();
             EmployeeDao employeeDao = new EmployeeDao();
             AttendLogDao attendLogDao = new AttendLogDao();
             PayrollDao payrollDao = new PayrollDao();
@@ -37,7 +39,9 @@ public class MainController {
             // 根据用户的权限的不同有不同的页面
             String level = userDao.getLevelByENo(currENo);
             if(level.equals("1")) {
+                List<HashMap<String, String>> allDepartment = departmentDao.getAllDepartmentWithMap();
                 List<HashMap<String, String>> allEmployee = employeeDao.getAllEntityWithMap();
+                model.addAttribute("allDepartment", JSONArray.fromObject(allDepartment).toString());
                 model.addAttribute("allEmployee", JSONArray.fromObject(allEmployee).toString());
                 return "root_mng_board";
             }
@@ -68,8 +72,10 @@ public class MainController {
         EmployeeDao employeeDao = new EmployeeDao();
         HashMap<String, String> currEmployee = employeeDao.getEntityWithMapByENo(currENo);
         List<HashMap<String, String>> depDataByYear = dataAnalysis.CountPayrollByYear();
+        HashMap<String, List<HashMap<String, String>>> depDataByMonth = dataAnalysis.CountPayrollByMonth();
         model.addAttribute("currEmployee", JSONArray.fromObject(currEmployee).toString());
         model.addAttribute("depDataByYear", JSONArray.fromObject(depDataByYear).toString());
+        model.addAttribute("depDataByMonth", JSONArray.fromObject(depDataByMonth).toString());
         return "root_dep_board";
     }
 

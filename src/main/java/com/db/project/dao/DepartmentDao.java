@@ -19,7 +19,7 @@ public class DepartmentDao{
     private Configuration conf = null;
     private SessionFactory sf = null;
 
-    public EmployeeDao() {
+    public DepartmentDao() {
         //实例化Configuration，这行代码默认加载hibernate.cfg.xml文件
         conf = new Configuration().configure();
         //以Configuration创建SessionFactory
@@ -40,6 +40,7 @@ public class DepartmentDao{
             temp.put("DName", entity.getdName());
             rstList.add(temp);
         }
+        session.close();
         return rstList;
     }
 

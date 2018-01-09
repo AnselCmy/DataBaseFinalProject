@@ -64,25 +64,29 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            每月工资柱状图
+                            {{ monthChosen.key }}工资柱状图
                         </div>
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <label for="month" class="col-md-1 control-label">月份</label>
                                 <div class="col-md-10">
                                     <select class="form-control" ng-model="monthChosen" id="month" name="month"
-                                            ng-options="m.key for m in month" ng-change="changeMonth(monthChosen.val)">
+                                            ng-change="changeMonth(monthChosen.val)"
+                                            ng-options="m.key for m in month">
                                         <%--<option ng-repeat="m in month">--%>
                                             <%--{{ m }}--%>
                                         <%--</option>--%>
                                     </select>
                                 </div>
+                                <%--<div class="col-md-1">--%>
+                                    <%--<a ng-href="/main/dep/{{ monthChosen.val }}" class="btn btn-default">确认</a>--%>
+                                <%--</div>--%>
+                                <%--{{ monthChosen }}--%>
+                                <%--{{ monthChosen.val }}--%>
                             </div>
                         </form>
                         <div class="panel-body">
                             <div id="morris-bar-chart2"></div>
-                            {{ monthChosen }}
-                            {{ count }}
                         </div>
                     </div>
                 </div>
@@ -120,7 +124,9 @@
         <%--$scope.searchAttendLog = JSON.parse('${searchAttendLog}');--%>
         <%--$scope.searchPayroll = JSON.parse('${searchPayroll}');--%>
         <%--$scope.allEvent = JSON.parse('${allEvent}');--%>
-        $scope.depDataByYear = ${depDataByYear};
+        $scope.depDataByYear = JSON.parse('${depDataByYear}');
+        $scope.depDataByMonth = JSON.parse('${depDataByMonth}');
+        <%--$scope.selectMonth = ${month};--%>
         $scope.mngSideBar = "";
         $scope.idvSideBar = "";
         $scope.depSideBar = "active-menu";
@@ -136,14 +142,13 @@
                         {"val":"10", "key":"十月"},
                         {"val":"11", "key":"十一月"},
                         {"val":"12", "key":"十二月"}];
-        $scope.count = 0;
         $scope.changeMonth = function(param){
-            morrisBayMonth.setData();
+            var data = $scope.depDataByMonth;
+            morrisByMonth.setData(data[0][param]);
         }
     });
 
-
-    var morrisBayMonth = Morris.Bar({
+    Morris.Bar({
         element: 'morris-bar-chart1',
         data: ${depDataByYear},
         xkey: 'DName',
@@ -158,6 +163,23 @@
         resize: true,
         xLabelMargin: 10
     });
+
+    var morrisByMonth = Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: JSON.parse('${depDataByMonth}')[0]["2"],
+        xkey: 'DName',
+        ykeys: ['Max', 'Min', 'Payroll'],
+        labels: ['最高工资', '最低工资', '平均工资'],
+        barColors: [
+            '#22a7f0',
+            '#1abc9c',
+            '#f92f7d'
+        ],
+        hideHover: 'false',
+        resize: true,
+        xLabelMargin: 10
+    });
+
 </script>
 </body>
 

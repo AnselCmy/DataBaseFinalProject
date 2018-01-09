@@ -65,6 +65,7 @@ public class AttendEventDao {
             temp.put("AEName", entity.getAeName());
             rstList.add(temp);
         }
+        session.close();
         return rstList;
     }
 
