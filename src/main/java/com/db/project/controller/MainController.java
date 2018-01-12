@@ -1,9 +1,6 @@
 package com.db.project.controller;
 
 
-import com.db.project.dao.EmployeeDao;
-import com.db.project.dao.UserDao;
-import com.db.project.entity.EmployeeEntity;
 import com.db.project.dao.*;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
@@ -66,7 +63,7 @@ public class MainController {
         DataAnalysis dataAnalysis = new DataAnalysis();
         EmployeeDao employeeDao = new EmployeeDao();
         HashMap<String, String> currEmployee = employeeDao.getEntityWithMapByENo(currENo);
-        List<HashMap<String, String>> depDataByYear = dataAnalysis.Siri(DataAnalysis.Say.Avg);
+        List<HashMap<String, String>> depDataByYear = dataAnalysis.CountPayrollByYear();
         model.addAttribute("currEmployee", JSONArray.fromObject(currEmployee).toString());
         model.addAttribute("depDataByYear", JSONArray.fromObject(depDataByYear).toString());
         return "root_dep_board";
