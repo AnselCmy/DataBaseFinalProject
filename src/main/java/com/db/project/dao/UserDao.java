@@ -45,6 +45,7 @@ public class UserDao {
         else {
             userEntity = null;
         }
+
         return userEntity;
     }
 
@@ -59,6 +60,7 @@ public class UserDao {
         Query query = session.createQuery(hql);
         query.setParameter("ENo", ENo);
         rstList = query.list();
+        session.close();
         return rstList.get(0);
     }
 
@@ -73,5 +75,6 @@ public class UserDao {
         query.setParameter("ENo", ENo);
         query.setParameter("UPassword", UPassword);
         query.executeUpdate();
+        session.close();
     }
 }

@@ -39,6 +39,7 @@ public class SubsidyEventDao {
             temp.put("SEName", entity.getSeName());
             rstList.add(temp);
         }
+        session.close();
         return rstList;
     }
 }

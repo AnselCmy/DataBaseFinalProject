@@ -75,6 +75,7 @@ public class EmployeeDao{
         Query query = session.createQuery(hql);
         query.setParameter("ENo", ENo);
         rstList = query.list();
+        session.close();
         return rstList.get(0);
     }
 
@@ -97,6 +98,7 @@ public class EmployeeDao{
         rstMap.put("PosName", entity.getPosName());
         rstMap.put("ETel", entity.geteTel());
         rstMap.put("EAge", String.valueOf((entity.geteAge()).intValue()));
+        session.close();
         return rstMap;
     }
 
@@ -121,6 +123,7 @@ public class EmployeeDao{
             temp.put("EAge", String.valueOf((entity.geteAge()).intValue()));
             rstList.add(temp);
         }
+        session.close();
         return rstList;
     }
 

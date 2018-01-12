@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- 工资记录 -->
+<a href="#payrollLog"></a>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="panel panel-default">
@@ -48,6 +49,7 @@
 </div> <!-- ./row -->
 <!-- /工资记录 -->
 
+<a href="#attendLog"></a>
 <!-- 考勤记录 -->
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -80,6 +82,8 @@
 </div> <!-- ./row -->
 <!-- /考勤记录 -->
 
+
+<a href="#subsidyLog"></a>
 <!-- 津贴记录 -->
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
